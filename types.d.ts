@@ -11,3 +11,11 @@ interface Course {
   ID: number;
   Max_Pages: number;
 }
+
+type CardData = {
+  card: JSX.Element;
+  spam: boolean;
+  from: String;
+  subject: String;
+  cues?: number;
+};

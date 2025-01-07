@@ -11,12 +11,15 @@ type GameContext = {
   roundOne: boolean[][];
   setRoundOne: Dispatch<SetStateAction<boolean[][]>>;
   updateEmailFromIndex: (arr: boolean[], index: number) => void;
+  roundTwo: boolean[][];
+  setRoundTwo: Dispatch<SetStateAction<boolean[][]>>;
 };
 
 const GameContext = createContext<GameContext | undefined>(undefined);
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [roundOne, setRoundOne] = useState<boolean[][]>([]);
+  const [roundTwo, setRoundTwo] = useState<boolean[][]>([]);
 
   function updateEmailFromIndex(arr: boolean[], index: number) {
     setRoundOne(
@@ -32,7 +35,13 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <GameContext.Provider
-      value={{ roundOne, updateEmailFromIndex, setRoundOne }}
+      value={{
+        roundOne,
+        updateEmailFromIndex,
+        setRoundOne,
+        roundTwo,
+        setRoundTwo,
+      }}
     >
       {children}
     </GameContext.Provider>

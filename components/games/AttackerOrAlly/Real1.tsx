@@ -20,6 +20,7 @@ export default function Real1({
         subject={subject}
         flagged={flagged}
         setFlagged={setFlagged}
+        emailNo={2}
       />
       <Image
         className="mx-auto"

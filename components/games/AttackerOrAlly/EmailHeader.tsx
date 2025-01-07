@@ -7,6 +7,7 @@ import {
 } from "react";
 import { CiFlag1 } from "react-icons/ci";
 import FlagText from "./FlagText";
+import { useGameContext } from "@/context/GameContext";
 
 export default function EmailHeader({
   from,
@@ -28,10 +29,18 @@ export default function EmailHeader({
   subjectbad?: boolean;
 }) {
   const [hydrated, setHydrated] = useState(false);
+  const {roundOne} = useGameContext()
 
   useEffect(() => {
     setHydrated(true);
   }, []);
+
+  //This was an attempt to persist the report mode but no joy yet (this needs to work!)
+  useEffect(() => {
+    if (roundOne[emailNo!].includes(true)){
+      setFlagged(true)
+    }
+  }, [emailNo])
 
   return (
     <div>
@@ -50,12 +59,12 @@ export default function EmailHeader({
       </div>
       <div className="flex flex-row gap-2">
         <h1 className="font-bold">From : </h1>
-        {frombad && iStart && emailNo ? (
+        {frombad ? (
           <FlagText
             flag={flagged}
             text={from}
-            index={iStart}
-            emailNo={emailNo}
+            index={iStart!}
+            emailNo={emailNo!}
           />
         ) : (
           <h1>{from}</h1>
@@ -63,12 +72,12 @@ export default function EmailHeader({
       </div>
       <div className="flex flex-row gap-2">
         <h1 className="font-bold">Subject : </h1>
-        {subjectbad && emailNo && iStart ? (
+        {subjectbad ? (
           <FlagText
             flag={flagged}
             text={subject}
-            emailNo={emailNo}
-            index={iStart + 1}
+            emailNo={emailNo!}
+            index={iStart! + 1}
           />
         ) : (
           <h1>{subject}</h1>

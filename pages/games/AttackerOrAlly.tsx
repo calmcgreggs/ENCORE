@@ -1,5 +1,5 @@
 import { useGameContext } from "@/context/GameContext";
-import cards from "@/data/games/AttackerOrAlly";
+import { roundOneEmails, roundTwoEmails } from "@/data/games/AttackerOrAlly";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -8,8 +8,62 @@ export default function AttackerOrAlly() {
   const { user } = useUser();
   const [currentEmail, setCurrentEmail] = useState(0);
   const [round, setRound] = useState(0);
-  const { setRoundOne } = useGameContext();
+  const { roundOne, setRoundOne, roundTwo, setRoundTwo } = useGameContext();
+  const [cards, setCards] = useState<CardData[]>();
 
+  function calculatePoints(emailIndex: number, round: number = 1) {
+    // Spam Email - 5 Points for Identifying Email, 2 Points for Every Cue Identified
+    // Genuine Email - 5 Points for Identifying Email
+    let total = 0;
+    let of = 0;
+    let cards: CardData[] = [];
+    let rscores: boolean[][] = [];
+    if (round == 1) {
+      cards = roundOneEmails;
+      rscores = roundOne;
+    } else if (round == 2) {
+      cards = roundTwoEmails;
+    }
+
+    if (cards[emailIndex].spam == true) {
+      if (rscores[emailIndex].includes(true)) {
+        total += 5;
+      }
+      of += 5;
+      rscores[emailIndex].forEach((each) => {
+        if (each == true) {
+          total += 2;
+        }
+        of += 2;
+      });
+    } else {
+      if (!rscores[emailIndex].includes(true)) {
+        total += 5;
+      }
+      of += 5;
+    }
+    return [total, of];
+  }
+
+  useEffect(() => {
+    if (round % 3 == 2) {
+      roundTwoEmails && setCards(roundTwoEmails);
+    } else {
+      setCards(roundOneEmails);
+    }
+  }, [round]);
+
+  function calculateTotalPoints() {
+    let total = 0;
+    let of = 0;
+    for (let i = 0; i < roundOne.length; i++) {
+      let r = calculatePoints(i);
+      total += r[0];
+      of += r[1];
+    }
+    return [total, of];
+  }
+  // Used to log updates to the round one array
   // useEffect(() => {
   //   console.log(roundOne);
   // }, [roundOne]);
@@ -17,7 +71,7 @@ export default function AttackerOrAlly() {
   //Create blank arrays of cues per email for reflection and score tracking (just round 1 at the moment)
   useEffect(() => {
     const r1: boolean[][] = [];
-    cards.map((each) => {
+    roundOneEmails.map((each) => {
       if (each.spam) {
         r1.push(new Array(each.cues).fill(false));
       } else {
@@ -25,7 +79,16 @@ export default function AttackerOrAlly() {
       }
     });
     setRoundOne(r1);
-  }, [cards]);
+    const r2: boolean[][] = [];
+    roundTwoEmails.map((each) => {
+      if (each.spam) {
+        r2.push(new Array(each.cues).fill(false));
+      } else {
+        r2.push([]);
+      }
+    });
+    setRoundTwo(r1);
+  }, [roundOneEmails, roundTwoEmails]);
 
   return round == 0 ? (
     <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20">
@@ -73,30 +136,99 @@ export default function AttackerOrAlly() {
         <h1 className="font-bold">Inbox</h1>
         <h1>{user?.primaryEmailAddress?.toString()}</h1>
         <div className={"[&>*]:mb-2 mt-10 mr-2 select-none"}>
-          {cards.map((each, i) => {
-            return (
-              <div
-                className={
-                  "rounded-xl p-2 " +
-                  (currentEmail == i ? "bg-blue-500" : "bg-blue-600")
-                }
-                key={i}
-                onClick={() => {
-                  setCurrentEmail(i);
-                }}
-              >
-                <h1 className="font-bold">{each.from}</h1>
-                <h1>{each.subject}</h1>
-              </div>
-            );
-          })}
+          {cards &&
+            cards.map((each, i) => {
+              return (
+                <div
+                  className={
+                    "rounded-xl p-2 " +
+                    (currentEmail == i ? "bg-blue-500" : "bg-blue-600")
+                  }
+                  key={i}
+                  onClick={() => {
+                    setCurrentEmail(i);
+                  }}
+                >
+                  <h1 className="font-bold">{each.from}</h1>
+                  <h1>{each.subject}</h1>
+                </div>
+              );
+            })}
         </div>
       </div>
       <div id="email-pane" className="w-3/4">
-        {currentEmail < cards.length ? cards[currentEmail].card : <div />}
+        {cards && currentEmail < cards.length ? (
+          cards[currentEmail].card
+        ) : (
+          <div />
+        )}
       </div>
+      <button
+        className="absolute bottom-2 right-0 bg-green-400 p-4 border-white border-2 hover:bg-green-600"
+        onClick={() => {
+          setRound(round + 1);
+        }}
+      >
+        Next Round
+      </button>
     </div>
   ) : (
-    <h1>Game Over</h1>
+    <div className="">
+      <h1 className="text-center text-xl mt-5 font-bold">
+        Round {round % 3 == 0 ? 3 : round % 3} Results:
+      </h1>
+      {roundOne.map((each, i) => {
+        return (
+          <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative">
+            <div className="w-1/4 text-center flex">
+              <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
+            </div>
+            <div className="w-1/2">
+              <table className="border-white border-2 mx-auto  ">
+                <tr className="[&>*]:px-3">
+                  <th className="text-center pl-3">Reported</th>
+                  {each.map((a, index) => {
+                    return (
+                      <th className="pl-3 border-white border-2">
+                        Cue {index + 1}
+                      </th>
+                    );
+                  })}
+                </tr>
+                <tr className="[&>*]:px-3 border-white border-2">
+                  <td className="pl-3 text-center">
+                    {each.includes(true) ? "Y" : "N"}
+                  </td>
+
+                  {each.map((a, index) => {
+                    return (
+                      <td className="pl-3 text-center border-white border-2">
+                        {a ? "Y" : "N"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </table>
+            </div>
+            <div className="w-1/4 text-center flex">
+              <h1 className="mx-auto my-auto font-bold">
+                Points - {calculatePoints(i).join("/")}{" "}
+              </h1>
+            </div>
+          </div>
+        );
+      })}
+      <div className="text-center text-xl font-bold">
+        Total Points - {calculateTotalPoints().join("/")}{" "}
+      </div>
+      <button
+        className="absolute bottom-2 right-0 bg-green-400 p-4 border-white border-2 hover:bg-green-600"
+        onClick={() => {
+          setRound(round + 1);
+        }}
+      >
+        Next Round
+      </button>
+    </div>
   );
 }
