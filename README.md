@@ -26,7 +26,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
 - Implement Manager Permissions
 - Create Manager Dashboard
 - Create Game
-    - Create Game Flow
+    - ~~Create Game Flow~~
     - Create Game Mechanics
     - Create Reflection Flow + Mechanics
 - Create Content For Game (Scenario Development)
