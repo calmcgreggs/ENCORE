@@ -5,8 +5,6 @@ import Real1 from "@/components/games/AttackerOrAlly/Real1";
 import Real2 from "@/components/games/AttackerOrAlly/Real2";
 import { ReactNode } from "react";
 
-
-
 var r1: CardData[] = [];
 
 const fake1: CardData = {
@@ -119,5 +117,62 @@ const real4: CardData = {
 };
 r2.push(real4);
 
+var r3: CardData[] = [];
+
+const fake5: CardData = {
+  card: (
+    <Fake1
+      from="british-airways@alerting-services.com"
+      subject="£300 Voucher for Your Next British Airways Flight"
+    />
+  ),
+  from: "british-airways@alerting-services.com",
+  subject: "3£300 Voucher for Your Next British Airways Flight",
+  spam: true,
+  cues: 5,
+};
+r3.push(fake5);
+
+const fake6: CardData = {
+  card: (
+    <Fake2
+      from="itdeparment@nukletech.com"
+      subject="URGENT : Download New Security Key"
+    />
+  ),
+  from: "itdeparment@nukletech.com",
+  subject: "3URGENT : Download New Security Key",
+  spam: true,
+  cues: 6,
+};
+r3.push(fake6);
+
+const real5: CardData = {
+  card: (
+    <Real1
+      from="timhale@nucletek.com"
+      subject="Patch updates for all employees"
+    />
+  ),
+  from: "timhale@nucletek.com",
+  subject: "3Patch updates for all employees",
+  spam: false,
+};
+r3.push(real5);
+
+const real6: CardData = {
+  card: (
+    <Real2
+      from="danlindsay@nucletek.com"
+      subject="3Meeting Notes - Going Forward"
+    />
+  ),
+  spam: false,
+  from: "danlindsay@nucletek.com",
+  subject: "Meeting Notes - Going Forward",
+};
+r3.push(real6);
+
 export const roundOneEmails = r1;
 export const roundTwoEmails = r2;
+export const roundThreeEmails = r3;

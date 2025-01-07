@@ -1,5 +1,9 @@
 import { useGameContext } from "@/context/GameContext";
-import { roundOneEmails, roundTwoEmails } from "@/data/games/AttackerOrAlly";
+import {
+  roundOneEmails,
+  roundThreeEmails,
+  roundTwoEmails,
+} from "@/data/games/AttackerOrAlly";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -7,8 +11,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 export default function AttackerOrAlly() {
   const { user } = useUser();
   const [currentEmail, setCurrentEmail] = useState(0);
-  const [round, setRound] = useState(0);
-  const { roundOne, setRoundOne, roundTwo, setRoundTwo } = useGameContext();
+  const { roundScores, round, setRound, setRoundScores } = useGameContext();
   const [cards, setCards] = useState<CardData[]>();
 
   function calculatePoints(emailIndex: number, round: number = 1) {
@@ -20,10 +23,10 @@ export default function AttackerOrAlly() {
     let rscores: boolean[][] = [];
     if (round == 1) {
       cards = roundOneEmails;
-      rscores = roundOne;
     } else if (round == 2) {
       cards = roundTwoEmails;
     }
+    rscores = roundScores[round - 1];
 
     if (cards[emailIndex].spam == true) {
       if (rscores[emailIndex].includes(true)) {
@@ -48,6 +51,8 @@ export default function AttackerOrAlly() {
   useEffect(() => {
     if (round % 3 == 2) {
       roundTwoEmails && setCards(roundTwoEmails);
+    } else if (round % 3 == 0) {
+      roundThreeEmails && setCards(roundThreeEmails);
     } else {
       setCards(roundOneEmails);
     }
@@ -56,7 +61,7 @@ export default function AttackerOrAlly() {
   function calculateTotalPoints() {
     let total = 0;
     let of = 0;
-    for (let i = 0; i < roundOne.length; i++) {
+    for (let i = 0; i < roundScores[round].length; i++) {
       let r = calculatePoints(i);
       total += r[0];
       of += r[1];
@@ -64,9 +69,9 @@ export default function AttackerOrAlly() {
     return [total, of];
   }
   // Used to log updates to the round one array
-  // useEffect(() => {
-  //   console.log(roundOne);
-  // }, [roundOne]);
+  useEffect(() => {
+    console.log(roundScores);
+  }, [roundScores]);
 
   //Create blank arrays of cues per email for reflection and score tracking (just round 1 at the moment)
   useEffect(() => {
@@ -78,7 +83,6 @@ export default function AttackerOrAlly() {
         r1.push([]);
       }
     });
-    setRoundOne(r1);
     const r2: boolean[][] = [];
     roundTwoEmails.map((each) => {
       if (each.spam) {
@@ -87,7 +91,15 @@ export default function AttackerOrAlly() {
         r2.push([]);
       }
     });
-    setRoundTwo(r1);
+    const r3: boolean[][] = [];
+    roundThreeEmails.map((each) => {
+      if (each.spam) {
+        r3.push(new Array(each.cues).fill(false));
+      } else {
+        r3.push([]);
+      }
+    });
+    setRoundScores([r1, r2, r3]);
   }, [roundOneEmails, roundTwoEmails]);
 
   return round == 0 ? (
@@ -177,47 +189,49 @@ export default function AttackerOrAlly() {
       <h1 className="text-center text-xl mt-5 font-bold">
         Round {round % 3 == 0 ? 3 : round % 3} Results:
       </h1>
-      {roundOne.map((each, i) => {
-        return (
-          <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative">
-            <div className="w-1/4 text-center flex">
-              <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
-            </div>
-            <div className="w-1/2">
-              <table className="border-white border-2 mx-auto  ">
-                <tr className="[&>*]:px-3">
-                  <th className="text-center pl-3">Reported</th>
-                  {each.map((a, index) => {
-                    return (
-                      <th className="pl-3 border-white border-2">
-                        Cue {index + 1}
-                      </th>
-                    );
-                  })}
-                </tr>
-                <tr className="[&>*]:px-3 border-white border-2">
-                  <td className="pl-3 text-center">
-                    {each.includes(true) ? "Y" : "N"}
-                  </td>
+      {roundScores &&
+        round &&
+        roundScores[round - 1].map((each, i) => {
+          return (
+            <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative">
+              <div className="w-1/4 text-center flex">
+                <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
+              </div>
+              <div className="w-1/2">
+                <table className="border-white border-2 mx-auto  ">
+                  <tr className="[&>*]:px-3">
+                    <th className="text-center pl-3">Reported</th>
+                    {each.map((a, index) => {
+                      return (
+                        <th className="pl-3 border-white border-2">
+                          Cue {index + 1}
+                        </th>
+                      );
+                    })}
+                  </tr>
+                  <tr className="[&>*]:px-3 border-white border-2">
+                    <td className="pl-3 text-center">
+                      {each.includes(true) ? "Y" : "N"}
+                    </td>
 
-                  {each.map((a, index) => {
-                    return (
-                      <td className="pl-3 text-center border-white border-2">
-                        {a ? "Y" : "N"}
-                      </td>
-                    );
-                  })}
-                </tr>
-              </table>
+                    {each.map((a, index) => {
+                      return (
+                        <td className="pl-3 text-center border-white border-2">
+                          {a ? "Y" : "N"}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                </table>
+              </div>
+              <div className="w-1/4 text-center flex">
+                <h1 className="mx-auto my-auto font-bold">
+                  Points - {calculatePoints(i).join("/")}{" "}
+                </h1>
+              </div>
             </div>
-            <div className="w-1/4 text-center flex">
-              <h1 className="mx-auto my-auto font-bold">
-                Points - {calculatePoints(i).join("/")}{" "}
-              </h1>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
       <div className="text-center text-xl font-bold">
         Total Points - {calculateTotalPoints().join("/")}{" "}
       </div>

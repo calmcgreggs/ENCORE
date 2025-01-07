@@ -14,11 +14,11 @@ export default function FlagText({
   index: number;
   emailNo: number;
 }) {
-  const { roundOne, setRoundOne } = useGameContext();
+  const { roundScores, setRoundScores, round } = useGameContext();
   const [found, setFound] = useState(false);
 
   useEffect(() => {
-    setFound(roundOne[emailNo][index]);
+    setFound(roundScores[round - 1][emailNo][index]);
   });
   return (
     <a
@@ -29,18 +29,24 @@ export default function FlagText({
       }
       onClick={() => {
         if (flag) {
-          setRoundOne(
-            roundOne.map((email, ei) => {
-              if (ei == emailNo) {
-                return email.map((each, i) => {
-                  if (i == index) {
-                    return !found;
+          setRoundScores(
+            roundScores.map((roundScore, roundNo) => {
+              if (roundNo != round - 1) {
+                return roundScore;
+              } else {
+                return roundScore.map((email, ei) => {
+                  if (ei == emailNo) {
+                    return email.map((each, i) => {
+                      if (i == index) {
+                        return !found;
+                      } else {
+                        return each;
+                      }
+                    });
                   } else {
-                    return each;
+                    return email;
                   }
                 });
-              } else {
-                return email;
               }
             })
           );
