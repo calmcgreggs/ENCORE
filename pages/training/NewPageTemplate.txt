@@ -1,0 +1,11 @@
+import PageLayout from "@/layouts/pagelayout";
+
+export default function Template() {
+  return (
+    <PageLayout>
+      <div className="text-center mt-10 px-10 [&>*]:my-10">
+        <h1>Content</h1>
+      </div>
+    </PageLayout>
+  );
+}
