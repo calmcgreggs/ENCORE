@@ -145,7 +145,7 @@ export default function AttackerOrAlly() {
         Round {round + 1} {reflection ? "Reflection" : ""}
       </h1>
       <div className="absolute top-2 right-2">
-        <CountdownCircleTimer
+        {!reflection && <CountdownCircleTimer
           isPlaying={reflection ? false : true}
           onComplete={() => {
             setRound(round + 1);
@@ -157,7 +157,7 @@ export default function AttackerOrAlly() {
           colorsTime={[7, 5, 2, 0]}
         >
           {({ remainingTime }) => remainingTime}
-        </CountdownCircleTimer>
+        </CountdownCircleTimer>}
       </div>
       <div id="message-pane" className="w-1/4 border-r-2 border-white ">
         <h1 className="font-bold">Inbox</h1>
@@ -189,7 +189,7 @@ export default function AttackerOrAlly() {
             })}
         </div>
       </div>
-      <div id="email-pane" className="w-3/4">
+      <div id="email-pane" className="w-3/4 relative">
         {cards && currentEmail < cards.length ? (
           cards[currentEmail].card
         ) : (

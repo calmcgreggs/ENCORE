@@ -19,3 +19,14 @@ type CardData = {
   subject: String;
   cues?: number;
 };
+
+type CueType =
+  | "SimilarDomain"
+  | "ImpersonalGreeting"
+  | "SpellingError"
+  | "GrammaticError"
+  | "Urgency"
+  | "PositiveConsequences"
+  | "NegativeConsequences"
+  | "Nonsense"
+  | "MaliciousAttachment";

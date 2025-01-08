@@ -15,7 +15,7 @@ export default function FlagText({
   flag: boolean;
   index: number;
   emailNo: number;
-  cue?: string;
+  cue?: CueType;
 }) {
   const {
     roundScores,
@@ -23,23 +23,20 @@ export default function FlagText({
     round,
     reflection,
     setReflectionModalOpen,
+    setCueNo,
   } = useGameContext();
   const [found, setFound] = useState(false);
 
   useEffect(() => {
     setFound(roundScores[round][emailNo][index]);
-  }, [round, roundScores, emailNo, index ]);
+  }, [round, roundScores, emailNo, index]);
 
-  useEffect(() => {
-    //temp as haven't figured out cue yet
-    console.log(cue)
-  }, [])
   return (
     <>
-    <ReflectionModal />
+      <ReflectionModal cue={cue} found={found} index={index} />
       <a
         className={
-          style! +
+          (style ? style : "") +
           " text-wrap transition-all ease-in-out duration-500 " +
           (reflection
             ? "underline decoration-wavy " +
@@ -51,6 +48,7 @@ export default function FlagText({
         onClick={() => {
           if (reflection) {
             setReflectionModalOpen(true);
+            setCueNo(index);
           } else if (flag) {
             setRoundScores(
               roundScores.map((roundScore, roundNo) => {

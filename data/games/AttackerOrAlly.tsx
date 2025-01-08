@@ -29,7 +29,7 @@ const fake2: CardData = {
   from: "itdeparment@nukletech.com",
   subject: "URGENT : Download New Security Key",
   spam: true,
-  cues: 6,
+  cues: 7,
 };
 r1.push(fake2);
 
@@ -85,7 +85,7 @@ const fake4: CardData = {
   from: "itdeparment@nukletech.com",
   subject: "2URGENT : Download New Security Key",
   spam: true,
-  cues: 6,
+  cues: 7,
 };
 r2.push(fake4);
 
@@ -141,7 +141,7 @@ const fake6: CardData = {
   from: "itdeparment@nukletech.com",
   subject: "3URGENT : Download New Security Key",
   spam: true,
-  cues: 6,
+  cues: 7,
 };
 r3.push(fake6);
 
@@ -176,10 +176,45 @@ type ReflectionDescriptions = {
   Bad: string;
 };
 
+// Derived from Parsons et. al
 let reflectionDescriptions: { [id: string]: ReflectionDescriptions } = {};
 reflectionDescriptions["SimilarDomain"] = {
   Good: "Well Done! You identified a similar domain attack!",
   Bad: "This attack attempts to use a domain similar to a legitimate one",
+};
+reflectionDescriptions["ImpersonalGreeting"] = {
+  Good: "Well Done! You identified an impersonal greeting!",
+  Bad: "This email is impersonal. Emails you recieve from a company that your interact with should have you name on file.",
+};
+reflectionDescriptions["SpellingError"] = {
+  Good: "Well Done! You identified the spelling error!",
+  Bad: "One of the words of this cue is spelled wrong. Legitimate companies will most often check their emails for spelling mistakes, however attackers that do not speak English as their first language may make this mistake.",
+};
+
+reflectionDescriptions["GrammaticalError"] = {
+  Good: "Well Done! You identified the grammatical error!",
+  Bad: "This cue does not make grammatical sense. Legitimate companies will most often check their emails for grammatical mistakes, however attackers that do not speak English as their first language may make this mistake.",
+};
+
+reflectionDescriptions["Urgency"] = {
+  Good: "Well Done! You identified a phony call to action!",
+  Bad: "Attackers will often try to incite emotion from a victim in order to control their behaviour. While this could be a legitimate cue from a reputable source, the combination of other cues in this email indicate that this is a phishing attempt",
+};
+reflectionDescriptions["PositiveConsequences"] = {
+  Good: "Well Done! You identified the promise of positive consequences of interacting with this email!",
+  Bad: "Attackers will often try to incite emotion from a victim in order to control their behaviour. While this could be a legitimate cue from a reputable source, this seems too good to be true and appears suspicious considering the other cues",
+};
+reflectionDescriptions["NegativeConsequences"] = {
+  Good: "Well Done! You identified the promise of negative consequences if you didn't interact with this email!",
+  Bad: "Attackers will often try to incite emotion from a victim in order to control their behaviour. While this could be a legitimate cue from a reputable source, this seems too bad to be true and appears suspicious considering the other cue",
+};
+reflectionDescriptions["Nonsense"] = {
+  Good: "Well Done! You identified that this statement does not align with your current frame of references!",
+  Bad: "One indication that part of a phishing email may be a cue is if it doesn't make sense. This is what is apparent in this cue.",
+};
+reflectionDescriptions["MaliciousAttachment"] = {
+  Good: "Well Done! You identified that the attachment was malicious!",
+  Bad: "Remember to check attachments in an email before downloading them. One inication that an attachment is malicious is that it's file extension is an .exe or .bat file",
 };
 
 export const roundOneEmails = r1;

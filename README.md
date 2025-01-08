@@ -27,6 +27,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - ~~Create Game Flow~~
   - ~~Create Game Mechanics~~
   - Create Reflection Flow + Mechanics
+  - Create website simulation
 - Create Content For Game (Scenario Development)
   - Find repository of emails
   - Modify and label emails

@@ -12,6 +12,8 @@ export default function EmailHeader({
   iStart,
   frombad,
   subjectbad,
+  fromcue,
+  subjectcue,
 }: {
   from: string;
   subject: string;
@@ -21,6 +23,8 @@ export default function EmailHeader({
   setFlagged: Dispatch<SetStateAction<boolean>>;
   frombad?: boolean;
   subjectbad?: boolean;
+  fromcue?: CueType;
+  subjectcue?: CueType;
 }) {
   const [hydrated, setHydrated] = useState(false);
   const { roundScores, round, reflection } = useGameContext();
@@ -37,33 +41,36 @@ export default function EmailHeader({
   }, [emailNo, round]);
 
   return (
-    <div>
+    <div className="">
       {!reflection && (
-        <div
-          id="report-flag"
-          className="absolute top-4 right-4 transition-all ease-in-out duration-500"
-        >
-          {flagged ? (
-            <CiFlag1
-              className="bg-red-500 w-10 h-10"
-              onClick={() => setFlagged(!flagged)}
-            />
-          ) : (
-            <CiFlag1
-              className="w-10 h-10"
-              onClick={() => setFlagged(!flagged)}
-            />
-          )}
+        <div className="relative">
+          <div
+            id="report-flag"
+            className="absolute top-4 right-4 transition-all ease-in-out duration-500"
+          >
+            {flagged ? (
+              <CiFlag1
+                className="bg-red-500 w-10 h-10"
+                onClick={() => setFlagged(!flagged)}
+              />
+            ) : (
+              <CiFlag1
+                className="w-10 h-10"
+                onClick={() => setFlagged(!flagged)}
+              />
+            )}
+          </div>
         </div>
       )}
       <div className="flex flex-row gap-2">
         <h1 className="font-bold">From : </h1>
-        {frombad ? (
+        {frombad && fromcue ? (
           <FlagText
             flag={flagged}
             text={from}
             index={iStart!}
             emailNo={emailNo!}
+            cue={fromcue}
           />
         ) : (
           <h1>{from}</h1>
@@ -71,12 +78,13 @@ export default function EmailHeader({
       </div>
       <div className="flex flex-row gap-2">
         <h1 className="font-bold">Subject : </h1>
-        {subjectbad ? (
+        {subjectbad && subjectcue ? (
           <FlagText
             flag={flagged}
             text={subject}
             emailNo={emailNo!}
             index={iStart! + 1}
+            cue={subjectcue}
           />
         ) : (
           <h1>{subject}</h1>

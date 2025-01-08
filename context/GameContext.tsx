@@ -16,6 +16,8 @@ type GameContext = {
   setReflection: Dispatch<SetStateAction<boolean>>;
   reflectionModalOpen: boolean;
   setReflectionModalOpen: Dispatch<SetStateAction<boolean>>;
+  cueNo: number;
+  setCueNo: Dispatch<SetStateAction<number>>;
 };
 
 const GameContext = createContext<GameContext | undefined>(undefined);
@@ -25,6 +27,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [round, setRound] = useState<number>(-1);
   const [reflection, setReflection] = useState(false);
   const [reflectionModalOpen, setReflectionModalOpen] = useState(false);
+  const [cueNo, setCueNo] = useState(0);
 
   return (
     <GameContext.Provider
@@ -37,6 +40,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setReflection,
         reflectionModalOpen,
         setReflectionModalOpen,
+        cueNo,
+        setCueNo,
       }}
     >
       {children}
