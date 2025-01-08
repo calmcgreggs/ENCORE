@@ -21,12 +21,14 @@ export default function AttackerOrAlly() {
     let of = 0;
     let cards: CardData[] = [];
     let rscores: boolean[][] = [];
-    if (round == 1) {
+    if (round % 3 == 0) {
       cards = roundOneEmails;
-    } else if (round == 2) {
+    } else if (round % 3 == 1) {
       cards = roundTwoEmails;
+    } else {
+      cards = roundThreeEmails;
     }
-    rscores = roundScores[round - 1];
+    rscores = roundScores[round % 3];
 
     if (cards[emailIndex].spam == true) {
       if (rscores[emailIndex].includes(true)) {
@@ -61,17 +63,23 @@ export default function AttackerOrAlly() {
   function calculateTotalPoints() {
     let total = 0;
     let of = 0;
-    for (let i = 0; i < roundScores[round].length; i++) {
-      let r = calculatePoints(i);
-      total += r[0];
-      of += r[1];
+    if (roundScores && round) {
+      for (let i = 0; i < roundScores[round % 3].length; i++) {
+        let r = calculatePoints(i, round);
+        total += r[0];
+        of += r[1];
+      }
     }
     return [total, of];
   }
-  // Used to log updates to the round one array
-  useEffect(() => {
-    console.log(roundScores);
-  }, [roundScores]);
+  // Debugging Print Outs
+  // useEffect(() => {
+  //   console.log(roundScores);
+  // }, [roundScores]);
+
+  // useEffect(() => {
+  //   console.log(round);
+  // }, [round]);
 
   //Create blank arrays of cues per email for reflection and score tracking (just round 1 at the moment)
   useEffect(() => {
@@ -102,7 +110,7 @@ export default function AttackerOrAlly() {
     setRoundScores([r1, r2, r3]);
   }, [roundOneEmails, roundTwoEmails]);
 
-  return round == 0 ? (
+  return round == -1 ? (
     <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20">
       <h1 className="text-2xl">Welcome to Attacker or Ally</h1>
       <h1>
@@ -119,15 +127,15 @@ export default function AttackerOrAlly() {
       <h1 className="text-red-300">Are You Ready?</h1>
       <button
         className="px-5 py-2 rounded-xl bg-green-700 w-fit mx-auto"
-        onClick={() => setRound(1)}
+        onClick={() => setRound(0)}
       >
         Let&apos;s do it!
       </button>
     </div>
-  ) : round < 4 ? (
+  ) : round < 3 ? (
     <div className="p-10 bg-blue-800 text-white flex flex-row h-[90vh] border border-white relative">
       <h1 className="absolute top-0 left-0 border-r px-2 border-b">
-        Round {round}
+        Round {round + 1}
       </h1>
       <div className="absolute top-2 right-2">
         <CountdownCircleTimer
@@ -187,51 +195,49 @@ export default function AttackerOrAlly() {
   ) : (
     <div className="">
       <h1 className="text-center text-xl mt-5 font-bold">
-        Round {round % 3 == 0 ? 3 : round % 3} Results:
+        Round {(round % 3) + 1} Results:
       </h1>
-      {roundScores &&
-        round &&
-        roundScores[round - 1].map((each, i) => {
-          return (
-            <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative">
-              <div className="w-1/4 text-center flex">
-                <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
-              </div>
-              <div className="w-1/2">
-                <table className="border-white border-2 mx-auto  ">
-                  <tr className="[&>*]:px-3">
-                    <th className="text-center pl-3">Reported</th>
-                    {each.map((a, index) => {
-                      return (
-                        <th className="pl-3 border-white border-2">
-                          Cue {index + 1}
-                        </th>
-                      );
-                    })}
-                  </tr>
-                  <tr className="[&>*]:px-3 border-white border-2">
-                    <td className="pl-3 text-center">
-                      {each.includes(true) ? "Y" : "N"}
-                    </td>
-
-                    {each.map((a, index) => {
-                      return (
-                        <td className="pl-3 text-center border-white border-2">
-                          {a ? "Y" : "N"}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                </table>
-              </div>
-              <div className="w-1/4 text-center flex">
-                <h1 className="mx-auto my-auto font-bold">
-                  Points - {calculatePoints(i).join("/")}{" "}
-                </h1>
-              </div>
+      {roundScores[round % 3].map((each, i) => {
+        return (
+          <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative">
+            <div className="w-1/4 text-center flex">
+              <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
             </div>
-          );
-        })}
+            <div className="w-1/2">
+              <table className="border-white border-2 mx-auto  ">
+                <tr className="[&>*]:px-3">
+                  <th className="text-center pl-3">Reported</th>
+                  {each.map((a, index) => {
+                    return (
+                      <th className="pl-3 border-white border-2">
+                        Cue {index + 1}
+                      </th>
+                    );
+                  })}
+                </tr>
+                <tr className="[&>*]:px-3 border-white border-2">
+                  <td className="pl-3 text-center">
+                    {each.includes(true) ? "Y" : "N"}
+                  </td>
+
+                  {each.map((a, index) => {
+                    return (
+                      <td className="pl-3 text-center border-white border-2">
+                        {a ? "Y" : "N"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </table>
+            </div>
+            <div className="w-1/4 text-center flex">
+              <h1 className="mx-auto my-auto font-bold">
+                Points - {calculatePoints(i, round).join("/")}{" "}
+              </h1>
+            </div>
+          </div>
+        );
+      })}
       <div className="text-center text-xl font-bold">
         Total Points - {calculateTotalPoints().join("/")}{" "}
       </div>

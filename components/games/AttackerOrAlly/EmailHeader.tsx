@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  Suspense,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, Suspense, useEffect, useState } from "react";
 import { CiFlag1 } from "react-icons/ci";
 import FlagText from "./FlagText";
 import { useGameContext } from "@/context/GameContext";
@@ -29,7 +23,7 @@ export default function EmailHeader({
   subjectbad?: boolean;
 }) {
   const [hydrated, setHydrated] = useState(false);
-  const {roundScores, round} = useGameContext()
+  const { roundScores, round } = useGameContext();
 
   useEffect(() => {
     setHydrated(true);
@@ -37,10 +31,10 @@ export default function EmailHeader({
 
   //This was an attempt to persist the report mode but no joy yet (this needs to work!)
   useEffect(() => {
-    if (roundScores[round - 1][emailNo!].includes(true)){
-      setFlagged(true)
+    if (roundScores[round][emailNo!].includes(true)) {
+      setFlagged(true);
     }
-  }, [emailNo])
+  }, [emailNo, round]);
 
   return (
     <div>

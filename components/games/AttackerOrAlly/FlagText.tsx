@@ -18,7 +18,8 @@ export default function FlagText({
   const [found, setFound] = useState(false);
 
   useEffect(() => {
-    setFound(roundScores[round - 1][emailNo][index]);
+    console.log(round);
+    setFound(roundScores[round][emailNo][index]);
   });
   return (
     <a
@@ -31,7 +32,7 @@ export default function FlagText({
         if (flag) {
           setRoundScores(
             roundScores.map((roundScore, roundNo) => {
-              if (roundNo != round - 1) {
+              if (roundNo != round) {
                 return roundScore;
               } else {
                 return roundScore.map((email, ei) => {

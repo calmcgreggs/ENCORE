@@ -18,7 +18,7 @@ const GameContext = createContext<GameContext | undefined>(undefined);
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [roundScores, setRoundScores] = useState<boolean[][][]>([]);
-  const [round, setRound] = useState<number>(0);
+  const [round, setRound] = useState<number>(-1);
 
   return (
     <GameContext.Provider
