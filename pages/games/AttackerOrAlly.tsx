@@ -52,9 +52,9 @@ export default function AttackerOrAlly() {
 
   useEffect(() => {
     if (round % 3 == 2) {
-      roundTwoEmails && setCards(roundTwoEmails);
+      setCards(roundTwoEmails);
     } else if (round % 3 == 0) {
-      roundThreeEmails && setCards(roundThreeEmails);
+      setCards(roundThreeEmails);
     } else {
       setCards(roundOneEmails);
     }
@@ -65,7 +65,7 @@ export default function AttackerOrAlly() {
     let of = 0;
     if (roundScores && round) {
       for (let i = 0; i < roundScores[round % 3].length; i++) {
-        let r = calculatePoints(i, round);
+        const r = calculatePoints(i, round);
         total += r[0];
         of += r[1];
       }
@@ -199,7 +199,7 @@ export default function AttackerOrAlly() {
       </h1>
       {roundScores[round % 3].map((each, i) => {
         return (
-          <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative">
+          <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative" key={i}>
             <div className="w-1/4 text-center flex">
               <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
             </div>
@@ -209,7 +209,7 @@ export default function AttackerOrAlly() {
                   <th className="text-center pl-3">Reported</th>
                   {each.map((a, index) => {
                     return (
-                      <th className="pl-3 border-white border-2">
+                      <th className="pl-3 border-white border-2" key={index}>
                         Cue {index + 1}
                       </th>
                     );
@@ -222,7 +222,7 @@ export default function AttackerOrAlly() {
 
                   {each.map((a, index) => {
                     return (
-                      <td className="pl-3 text-center border-white border-2">
+                      <td className="pl-3 text-center border-white border-2" key={index}>
                         {a ? "Y" : "N"}
                       </td>
                     );
