@@ -12,6 +12,10 @@ type GameContext = {
   setRoundScores: Dispatch<SetStateAction<boolean[][][]>>;
   round: number;
   setRound: Dispatch<SetStateAction<number>>;
+  reflection: boolean;
+  setReflection: Dispatch<SetStateAction<boolean>>;
+  reflectionModalOpen: boolean;
+  setReflectionModalOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const GameContext = createContext<GameContext | undefined>(undefined);
@@ -19,6 +23,8 @@ const GameContext = createContext<GameContext | undefined>(undefined);
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [roundScores, setRoundScores] = useState<boolean[][][]>([]);
   const [round, setRound] = useState<number>(-1);
+  const [reflection, setReflection] = useState(false);
+  const [reflectionModalOpen, setReflectionModalOpen] = useState(false);
 
   return (
     <GameContext.Provider
@@ -27,6 +33,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setRoundScores,
         round,
         setRound,
+        reflection,
+        setReflection,
+        reflectionModalOpen,
+        setReflectionModalOpen,
       }}
     >
       {children}

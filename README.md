@@ -23,21 +23,28 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
 
 ## To-Do List
 
-- Implement Manager Permissions
-- Create Manager Dashboard
 - Create Game
-    - ~~Create Game Flow~~
-    - Create Game Mechanics
-    - Create Reflection Flow + Mechanics
+  - ~~Create Game Flow~~
+  - ~~Create Game Mechanics~~
+  - Create Reflection Flow + Mechanics
 - Create Content For Game (Scenario Development)
-    - Find repository of emails
-    - Modify and label emails
-    - Create React Clones
-    - Add to Game
+  - Find repository of emails
+  - Modify and label emails
+  - Create React Clones
+  - Add to Game
+  - Randomisation of Emails
+- Data Aggregation Feature
+  - Implement Manager Permissions
+  - Create Manager Dashboard
+  - Tag _FlagText_ elements with type of cue description for data aggregation
+- Evaluation
+  - Create Pre, Mid and Post Tests with randomised data
+- Stretch Goals
+  - Different Click Colours to denote different cue types (e.g. similar domain etc.)
 
 ## Wireframes
 
-The wireframes for this project can be found at https://www.figma.com/design/Pg52ux4LXGLjPrp2PD5k0f/ENCORE-Training-Platform?node-id=0-1&t=zBePdW5j1QMc6VFp-1
+The wireframes for this project can be found at https://www.figma.com/design/Pg52ux4LXGLjPrp2PD5k0f/ENCORE-Training-Platform?node-id=0-1&t=zBePdW5j1QMc6VFp-1 and https://www.figma.com/design/ckL20EggVJ8YmIJjgBNZAm/Attacker-or-Ally
 
 ## Credits
 

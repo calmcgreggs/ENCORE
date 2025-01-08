@@ -1,9 +1,7 @@
-import Card from "@/components/games/AttackerOrAlly/EmailHeader";
 import Fake1 from "@/components/games/AttackerOrAlly/Fake1";
 import Fake2 from "@/components/games/AttackerOrAlly/Fake2";
 import Real1 from "@/components/games/AttackerOrAlly/Real1";
 import Real2 from "@/components/games/AttackerOrAlly/Real2";
-import { ReactNode } from "react";
 
 var r1: CardData[] = [];
 
@@ -173,6 +171,18 @@ const real6: CardData = {
 };
 r3.push(real6);
 
+type ReflectionDescriptions = {
+  Good: string;
+  Bad: string;
+};
+
+let reflectionDescriptions: { [id: string]: ReflectionDescriptions } = {};
+reflectionDescriptions["SimilarDomain"] = {
+  Good: "Well Done! You identified a similar domain attack!",
+  Bad: "This attack attempts to use a domain similar to a legitimate one",
+};
+
 export const roundOneEmails = r1;
 export const roundTwoEmails = r2;
 export const roundThreeEmails = r3;
+export const Reflections = reflectionDescriptions;

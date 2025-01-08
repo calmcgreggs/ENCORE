@@ -1,7 +1,7 @@
 import Image from "next/image";
-import FlagText from "./FlagText";
-import {  useState } from "react";
+import { useState } from "react";
 import EmailHeader from "./EmailHeader";
+import FlagText from "./FlagText";
 
 export default function Fake1({
   from,
@@ -14,6 +14,7 @@ export default function Fake1({
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 relative">
+      
       <EmailHeader
         from={from}
         subject={subject}

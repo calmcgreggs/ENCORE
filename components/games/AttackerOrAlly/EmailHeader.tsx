@@ -1,7 +1,7 @@
+import { useGameContext } from "@/context/GameContext";
 import { Dispatch, SetStateAction, Suspense, useEffect, useState } from "react";
 import { CiFlag1 } from "react-icons/ci";
 import FlagText from "./FlagText";
-import { useGameContext } from "@/context/GameContext";
 
 export default function EmailHeader({
   from,
@@ -23,7 +23,7 @@ export default function EmailHeader({
   subjectbad?: boolean;
 }) {
   const [hydrated, setHydrated] = useState(false);
-  const { roundScores, round } = useGameContext();
+  const { roundScores, round, reflection } = useGameContext();
 
   useEffect(() => {
     setHydrated(true);
@@ -38,19 +38,24 @@ export default function EmailHeader({
 
   return (
     <div>
-      <div
-        id="report-flag"
-        className="absolute top-4 right-4 transition-all ease-in-out duration-500"
-      >
-        {flagged ? (
-          <CiFlag1
-            className="bg-red-500 w-10 h-10"
-            onClick={() => setFlagged(!flagged)}
-          />
-        ) : (
-          <CiFlag1 className="w-10 h-10" onClick={() => setFlagged(!flagged)} />
-        )}
-      </div>
+      {!reflection && (
+        <div
+          id="report-flag"
+          className="absolute top-4 right-4 transition-all ease-in-out duration-500"
+        >
+          {flagged ? (
+            <CiFlag1
+              className="bg-red-500 w-10 h-10"
+              onClick={() => setFlagged(!flagged)}
+            />
+          ) : (
+            <CiFlag1
+              className="w-10 h-10"
+              onClick={() => setFlagged(!flagged)}
+            />
+          )}
+        </div>
+      )}
       <div className="flex flex-row gap-2">
         <h1 className="font-bold">From : </h1>
         {frombad ? (

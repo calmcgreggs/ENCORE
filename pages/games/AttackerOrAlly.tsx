@@ -11,7 +11,14 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 export default function AttackerOrAlly() {
   const { user } = useUser();
   const [currentEmail, setCurrentEmail] = useState(0);
-  const { roundScores, round, setRound, setRoundScores } = useGameContext();
+  const {
+    roundScores,
+    round,
+    setRound,
+    setRoundScores,
+    reflection,
+    setReflection,
+  } = useGameContext();
   const [cards, setCards] = useState<CardData[]>();
 
   function calculatePoints(emailIndex: number, round: number = 1) {
@@ -52,11 +59,11 @@ export default function AttackerOrAlly() {
 
   useEffect(() => {
     if (round % 3 == 2) {
-      setCards(roundTwoEmails);
-    } else if (round % 3 == 0) {
       setCards(roundThreeEmails);
-    } else {
+    } else if (round % 3 == 0) {
       setCards(roundOneEmails);
+    } else {
+      setCards(roundTwoEmails);
     }
   }, [round]);
 
@@ -135,11 +142,11 @@ export default function AttackerOrAlly() {
   ) : round < 3 ? (
     <div className="p-10 bg-blue-800 text-white flex flex-row h-[90vh] border border-white relative">
       <h1 className="absolute top-0 left-0 border-r px-2 border-b">
-        Round {round + 1}
+        Round {round + 1} {reflection ? "Reflection" : ""}
       </h1>
       <div className="absolute top-2 right-2">
         <CountdownCircleTimer
-          isPlaying={false}
+          isPlaying={reflection ? false : true}
           onComplete={() => {
             setRound(round + 1);
             return { shouldRepeat: true, delay: 1.5 };
@@ -162,7 +169,13 @@ export default function AttackerOrAlly() {
                 <div
                   className={
                     "rounded-xl p-2 " +
-                    (currentEmail == i ? "bg-blue-500" : "bg-blue-600")
+                    (reflection
+                      ? each.spam
+                        ? "bg-red-400"
+                        : "bg-green-400"
+                      : currentEmail == i
+                      ? "bg-blue-500"
+                      : "bg-blue-600")
                   }
                   key={i}
                   onClick={() => {
@@ -199,7 +212,10 @@ export default function AttackerOrAlly() {
       </h1>
       {roundScores[round % 3].map((each, i) => {
         return (
-          <div className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative" key={i}>
+          <div
+            className="mt-2 h-1/6 bg-blue-800 p-5 m-2 rounded-xl flex flex-row gap-5 relative"
+            key={i}
+          >
             <div className="w-1/4 text-center flex">
               <h1 className="font-bold my-auto mx-auto">Email {i + 1}</h1>
             </div>
@@ -222,7 +238,10 @@ export default function AttackerOrAlly() {
 
                   {each.map((a, index) => {
                     return (
-                      <td className="pl-3 text-center border-white border-2" key={index}>
+                      <td
+                        className="pl-3 text-center border-white border-2"
+                        key={index}
+                      >
                         {a ? "Y" : "N"}
                       </td>
                     );
@@ -244,7 +263,12 @@ export default function AttackerOrAlly() {
       <button
         className="absolute bottom-2 right-0 bg-green-400 p-4 border-white border-2 hover:bg-green-600"
         onClick={() => {
-          setRound(round + 1);
+          if (round == 5) {
+            setRound(0);
+            setReflection(true);
+          } else {
+            setRound(round + 1);
+          }
         }}
       >
         Next Round
