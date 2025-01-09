@@ -26,7 +26,8 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
 - Create Game
   - ~~Create Game Flow~~
   - ~~Create Game Mechanics~~
-  - Create Reflection Flow + Mechanics
+  - ~~Create Reflection Flow + Mechanics~~
+  - Create final page after reflection (or even just a button that shows up taking back to dashboard)
   - Create website simulation
 - Create Content For Game (Scenario Development)
   - Find repository of emails
@@ -35,9 +36,10 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - Add to Game
   - Randomisation of Emails
 - Data Aggregation Feature
-  - Implement Manager Permissions
+  - ~~Implement Manager Permissions~~
   - Create Manager Dashboard
-  - Tag _FlagText_ elements with type of cue description for data aggregation
+  - ~~Tag _FlagText_ elements with type of cue description for data aggregation~~
+  - ~~Aggregate highscore data for user on dashboard~~
 - Evaluation
   - Create Pre, Mid and Post Tests with randomised data
 - Stretch Goals

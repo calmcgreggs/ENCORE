@@ -4,6 +4,8 @@ import {
   roundThreeEmails,
   roundTwoEmails,
 } from "@/data/games/AttackerOrAlly";
+import useGetUserProfile from "@/hooks/useGetUserProfile";
+import useUpdateHighScore from "@/hooks/useUpdateHighScore";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -20,6 +22,23 @@ export default function AttackerOrAlly() {
     setReflection,
   } = useGameContext();
   const [cards, setCards] = useState<CardData[]>();
+
+  const [userProfile, setUserProfile] = useState<
+    UserProfile | null | undefined
+  >();
+
+  async function GetPF() {
+    if (user?.primaryEmailAddress?.toString()) {
+      setUserProfile(
+        // eslint-disable-next-line
+        await useGetUserProfile(user.primaryEmailAddress.toString())
+      );
+    }
+  }
+
+  useEffect(() => {
+    GetPF();
+  }, [user]);
 
   function calculatePoints(emailIndex: number, round: number = 1) {
     // Spam Email - 5 Points for Identifying Email, 2 Points for Every Cue Identified
@@ -67,6 +86,26 @@ export default function AttackerOrAlly() {
     }
   }, [round]);
 
+  function WrapUpdateHighscore(highscoreAsPercentage: number) {
+    useUpdateHighScore(
+      highscoreAsPercentage,
+      user!.primaryEmailAddress!.toString()
+    );
+  }
+
+  useEffect(() => {
+    if (round == 3) {
+      const results = calculateAllRoundsTotalPoints();
+      const highscoreAsPercentage = Math.round((results[0] / results[1]) * 100);
+      if (
+        user?.primaryEmailAddress &&
+        userProfile &&
+        userProfile?.Highscore < highscoreAsPercentage
+      )
+        WrapUpdateHighscore(highscoreAsPercentage);
+    }
+  }, [round]);
+
   function calculateTotalPoints() {
     let total = 0;
     let of = 0;
@@ -75,6 +114,21 @@ export default function AttackerOrAlly() {
         const r = calculatePoints(i, round);
         total += r[0];
         of += r[1];
+      }
+    }
+    return [total, of];
+  }
+
+  function calculateAllRoundsTotalPoints() {
+    let total = 0;
+    let of = 0;
+    if (roundScores) {
+      for (let ro = 0; ro < 3; ro++) {
+        for (let i = 0; i < roundScores[ro % 3].length; i++) {
+          const r = calculatePoints(i, ro);
+          total += r[0];
+          of += r[1];
+        }
       }
     }
     return [total, of];
@@ -117,6 +171,11 @@ export default function AttackerOrAlly() {
     setRoundScores([r1, r2, r3]);
   }, [roundOneEmails, roundTwoEmails]);
 
+  useEffect(() => {
+    setRound(-1);
+    setReflection(false);
+  }, []);
+
   return round == -1 ? (
     <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20">
       <h1 className="text-2xl">Welcome to Attacker or Ally</h1>
@@ -145,19 +204,21 @@ export default function AttackerOrAlly() {
         Round {round + 1} {reflection ? "Reflection" : ""}
       </h1>
       <div className="absolute top-2 right-2">
-        {!reflection && <CountdownCircleTimer
-          isPlaying={reflection ? false : true}
-          onComplete={() => {
-            setRound(round + 1);
-            return { shouldRepeat: true, delay: 1.5 };
-          }}
-          size={100}
-          duration={120}
-          colors={["#d41133", "#F7B801", "#A30000", "#A30000"]}
-          colorsTime={[7, 5, 2, 0]}
-        >
-          {({ remainingTime }) => remainingTime}
-        </CountdownCircleTimer>}
+        {!reflection && (
+          <CountdownCircleTimer
+            isPlaying={reflection ? false : true}
+            onComplete={() => {
+              setRound(round + 1);
+              return { shouldRepeat: true, delay: 1.5 };
+            }}
+            size={100}
+            duration={120}
+            colors={["#d41133", "#F7B801", "#A30000", "#A30000"]}
+            colorsTime={[7, 5, 2, 0]}
+          >
+            {({ remainingTime }) => remainingTime}
+          </CountdownCircleTimer>
+        )}
       </div>
       <div id="message-pane" className="w-1/4 border-r-2 border-white ">
         <h1 className="font-bold">Inbox</h1>
