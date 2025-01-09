@@ -28,7 +28,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - ~~Create Game Mechanics~~
   - ~~Create Reflection Flow + Mechanics~~
   - Create final page after reflection (or even just a button that shows up taking back to dashboard)
-  - Create website simulation
+  
 - Create Content For Game (Scenario Development)
   - Find repository of emails
   - Modify and label emails
@@ -44,6 +44,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - Create Pre, Mid and Post Tests with randomised data
 - Stretch Goals
   - Different Click Colours to denote different cue types (e.g. similar domain etc.)
+  - Create website simulation
 
 ## Wireframes
 
