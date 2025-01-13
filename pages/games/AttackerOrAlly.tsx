@@ -7,6 +7,7 @@ import {
 import useGetUserProfile from "@/hooks/useGetUserProfile";
 import useUpdateHighScore from "@/hooks/useUpdateHighScore";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
@@ -321,6 +322,13 @@ export default function AttackerOrAlly() {
       <div className="text-center text-xl font-bold">
         Total Points - {calculateTotalPoints().join("/")}{" "}
       </div>
+      {reflection && (
+        <Link href="/dashboard">
+          <button className="absolute bottom-2 left-0 bg-red-400 p-4 border-white border-2 hover:bg-green-600">
+            Dashboard
+          </button>
+        </Link>
+      )}
       <button
         className="absolute bottom-2 right-0 bg-green-400 p-4 border-white border-2 hover:bg-green-600"
         onClick={() => {

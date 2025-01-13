@@ -27,7 +27,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - ~~Create Game Flow~~
   - ~~Create Game Mechanics~~
   - ~~Create Reflection Flow + Mechanics~~
-  - Create final page after reflection (or even just a button that shows up taking back to dashboard)
+  -~~ Create final page after reflection (or even just a button that shows up taking back to dashboard)~~
   
 - Create Content For Game (Scenario Development)
   - Find repository of emails
