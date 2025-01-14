@@ -1,4 +1,5 @@
 import AdminStat from "@/components/dashboard/AdminStat";
+import EmployeeScore from "@/components/dashboard/EmployeeScore";
 import DashboardTopic from "@/components/dashboard/topic";
 import courses from "@/data/courses";
 import dev from "@/data/developer_mode";
@@ -291,9 +292,29 @@ export default function Dashboard() {
                   </div>
                 </div>
               ) : adminTab == "Cue Breakdown" ? (
-                <h1>Cue Breakdown</h1>
+                <h1>
+                  Cue Breakdown - Think pie chart and other cool analytics
+                </h1>
               ) : (
-                <h1>Employee Scores</h1>
+                <div className="flex flex-col text-center">
+                  <div className="flex flex-row mx-5">
+                    {["ID", "Date", "Score", "Feedback"].map((each, i) => {
+                      return (
+                        <h1 className="text-2xl w-1/4 font-bold" key={i}>
+                          {each}
+                        </h1>
+                      );
+                    })}
+                  </div>
+                  <div
+                    id="EmployeeResults"
+                    className="mx-5 my-2 gap-5 flex flex-col"
+                  >
+                    <EmployeeScore date={new Date()} percentage={60} id="1" />
+                    <EmployeeScore date={new Date()} percentage={14} id="2" />
+                    <EmployeeScore date={new Date()} percentage={89} id="3" />
+                  </div>
+                </div>
               )}
             </div>
           </>
