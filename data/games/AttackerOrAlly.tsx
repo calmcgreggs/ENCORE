@@ -2,6 +2,10 @@ import Fake1 from "@/components/games/AttackerOrAlly/Fake1";
 import Fake2 from "@/components/games/AttackerOrAlly/Fake2";
 import Real1 from "@/components/games/AttackerOrAlly/Real1";
 import Real2 from "@/components/games/AttackerOrAlly/Real2";
+import TestFake1 from "@/components/games/AttackerOrAlly/TestFake1";
+import TestFake2 from "@/components/games/AttackerOrAlly/TestFake2";
+import TestReal1 from "@/components/games/AttackerOrAlly/TestReal1";
+import TestReal2 from "@/components/games/AttackerOrAlly/TestReal2";
 
 var r1: CardData[] = [];
 
@@ -179,6 +183,62 @@ const real6: CardData = {
 };
 r3.push(real6);
 
+var test: CardData[] = [];
+
+const testfake1: CardData = {
+  card: (
+    <TestFake1
+      from="british-airways@alerting-services.com"
+      subject="£300 Voucher for Your Next British Airways Flight"
+    />
+  ),
+  from: "british-airways@alerting-services.com",
+  subject: "3£300 Voucher for Your Next British Airways Flight",
+  spam: true,
+  cues: 5,
+};
+test.push(testfake1);
+
+const testfake2: CardData = {
+  card: (
+    <TestFake2
+      from="itdeparment@nukletech.com"
+      subject="URGENT : Download New Security Key"
+    />
+  ),
+  from: "itdeparment@nukletech.com",
+  subject: "3URGENT : Download New Security Key",
+  spam: true,
+  cues: 7,
+};
+test.push(testfake2);
+
+const testreal1: CardData = {
+  card: (
+    <TestReal1
+      from="timhale@nucletek.com"
+      subject="Patch updates for all employees"
+    />
+  ),
+  from: "timhale@nucletek.com",
+  subject: "3Patch updates for all employees",
+  spam: false,
+};
+test.push(testreal1);
+
+const testreal2: CardData = {
+  card: (
+    <TestReal2
+      from="danlindsay@nucletek.com"
+      subject="3Meeting Notes - Going Forward"
+    />
+  ),
+  spam: false,
+  from: "danlindsay@nucletek.com",
+  subject: "Meeting Notes - Going Forward",
+};
+test.push(testreal2);
+
 type ReflectionDescriptions = {
   Good: string;
   Bad: string;
@@ -229,3 +289,4 @@ export const roundOneEmails = r1;
 export const roundTwoEmails = r2;
 export const roundThreeEmails = r3;
 export const Reflections = reflectionDescriptions;
+export const testEmails = test;
