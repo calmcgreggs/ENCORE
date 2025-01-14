@@ -1,3 +1,4 @@
+import AdminStat from "@/components/dashboard/AdminStat";
 import DashboardTopic from "@/components/dashboard/topic";
 import courses from "@/data/courses";
 import dev from "@/data/developer_mode";
@@ -66,8 +67,10 @@ export default function Dashboard() {
   }, [userProfile]);
 
   type Tab = "Topics" | "Tests" | "Highscores";
+  type AdminTab = "Overview" | "Employee Scores" | "Cue Breakdown";
 
   const [tab, setTab] = useState<Tab>("Topics");
+  const [adminTab, setAdminTab] = useState<AdminTab>("Overview");
 
   useEffect(() => {
     if (
@@ -239,7 +242,61 @@ export default function Dashboard() {
             )}
           </>
         ) : (
-          <></>
+          <>
+            <div className="bg-transparent flex flex-col">
+              <div className="grid grid-cols-3 xl:w-[50%] mx-auto text-center mb-10 bg-white text-black font-bold transition-all duration-100 ease-in-out border-4 border-black [&>*]:border-black [&>*]:border-[1px]">
+                {["Overview", "Employee Scores", "Cue Breakdown"].map(
+                  (adCat, i) => {
+                    return (
+                      <div
+                        key={i}
+                        className={
+                          (adminTab.toString() == adCat
+                            ? "bg-black text-white"
+                            : "") + " p-2"
+                        }
+                      >
+                        <button
+                          onClick={() => {
+                            setAdminTab(adCat as AdminTab);
+                          }}
+                        >
+                          {adCat}
+                        </button>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+              {adminTab == "Overview" ? (
+                <div className="flex flex-row [&>*]:mx-10 mx-auto ">
+                  <div id="stats" className="gap-2 flex flex-col mx-auto">
+                    {/* TODO: This needs to be made dynamic */}
+                    <AdminStat
+                      text="of your employees can correctly identify all of the phishing scams in
+        their inbox"
+                      colour="green"
+                      percentage={84}
+                    />
+                    <AdminStat
+                      text="of your employees gave away their personal details"
+                      colour="green"
+                      percentage={0}
+                    />
+                    <AdminStat
+                      text="of your employees did not report a phishing email"
+                      colour="red"
+                      percentage={64}
+                    />
+                  </div>
+                </div>
+              ) : adminTab == "Cue Breakdown" ? (
+                <h1>Cue Breakdown</h1>
+              ) : (
+                <h1>Employee Scores</h1>
+              )}
+            </div>
+          </>
         )}
       </div>
     )
