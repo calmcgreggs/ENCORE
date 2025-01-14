@@ -172,6 +172,7 @@ export default function AttackerOrAlly() {
     setRoundScores([r1, r2, r3]);
   }, [roundOneEmails, roundTwoEmails]);
 
+  // Used to restart game but disabled during development. TODO : Enable this later
   useEffect(() => {
     setRound(-1);
     setReflection(false);
@@ -252,6 +253,13 @@ export default function AttackerOrAlly() {
         </div>
       </div>
       <div id="email-pane" className="w-3/4 relative">
+        {cards && cards[currentEmail].context ? (
+          <div className="absolute -bottom-2 w-2/3 mt-5 left-1/2 transform -translate-x-1/2 text-center text-white italic animate-pulse">
+            <h1>{cards[currentEmail].context}</h1>
+          </div>
+        ) : (
+          <></>
+        )}
         {cards && currentEmail < cards.length ? (
           cards[currentEmail].card
         ) : (

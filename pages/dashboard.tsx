@@ -1,5 +1,6 @@
 import AdminStat from "@/components/dashboard/AdminStat";
 import EmployeeScore from "@/components/dashboard/EmployeeScore";
+import AdminPieChart from "@/components/dashboard/PieChart";
 import DashboardTopic from "@/components/dashboard/topic";
 import courses from "@/data/courses";
 import dev from "@/data/developer_mode";
@@ -160,7 +161,7 @@ export default function Dashboard() {
                 )}
               </div>
             ) : tab == "Highscores" ? (
-              <div className="grid grid-rows-4 bg-transparent xl:m-5 rounded-xl [&>*]:text-center xl:p-5 text-xs xl:text-base transition-all duration-1000 ease-in-out border-black">
+              <div className="grid grid-rows-1 bg-transparent xl:mx-5 rounded-xl [&>*]:text-center xl:p-5 text-xs xl:text-base transition-all duration-1000 ease-in-out border-black">
                 <div className="text-white grid grid-cols-3 p-5 border-gray-400 border-b-4 [&>*]:my-auto font-bold lg:text-xl">
                   <h1 className="font-bold">Game</h1>
                   <h1>Highscore</h1>
@@ -182,7 +183,7 @@ export default function Dashboard() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 xl:w-1/2 w-11/12 mx-auto   [&>*]:p-5 rounded-xl text-white transition-all duration-1000 ease-in-out [&>*]:border-t-2 [&>*]:border-b-2 [&>*]:pb-10 ">
+              <div className="grid grid-cols-2 w-11/12 mx-auto   [&>*]:p-5 rounded-xl text-white transition-all duration-1000 ease-in-out [&>*]:border-t-2 [&>*]:border-b-2 ">
                 <div className="border-white border-r-2">
                   <h1 className="xl:text-3xl font-bold mb-5">Initial Test</h1>
                   <h1 className="font-extralight xl:text-base text-sm xl:h-1/4 h-1/2">
@@ -191,7 +192,7 @@ export default function Dashboard() {
                     level of cybersecurity knowledge with regard to Industrial
                     Control Systems
                   </h1>
-                  <div className="xl:grid xl:grid-cols-2 mt-20 gap-4 xl:gap-0 [&>*]:mx-5">
+                  <div className="xl:grid xl:grid-cols-2 mt-10 gap-4 xl:gap-0 [&>*]:mx-5">
                     <h1 className="xl:text-base my-auto font-bold text-center text-sm ">
                       {loading ? (
                         <span className="loading loading-spinner loading-xs mx-auto ">
@@ -213,13 +214,13 @@ export default function Dashboard() {
                 </div>
                 <div className="">
                   <h1 className="xl:text-3xl font-bold mb-5 ">Final Test</h1>
-                  <h1 className="font-extralight xl:text-base text-sm xl:h-1/4 h-1/2">
+                  <h1 className="font-extralight xl:text-base text-sm xl:h-1/4">
                     This test is designed to be taken at the end of your ENCORE
                     training journey. This should indicate your final level of
                     cybersecurity knowledge with regard to Industrial Control
                     Systems
                   </h1>
-                  <div className="xl:grid xl:grid-cols-2 mt-20 gap-4 xl:gap-0 [&>*]:mx-5">
+                  <div className="xl:grid xl:grid-cols-2 mt-10 gap-2 xl:gap-0 [&>*]:mx-5">
                     <h1 className="xl:text-base my-auto font-bold text-center text-sm ">
                       {loading ? (
                         <span className="loading loading-spinner loading-xs mx-auto ">
@@ -292,9 +293,12 @@ export default function Dashboard() {
                   </div>
                 </div>
               ) : adminTab == "Cue Breakdown" ? (
-                <h1>
-                  Cue Breakdown - Think pie chart and other cool analytics
-                </h1>
+                <div className="flex m-5 bg-white/30 isolate backdrop-blur-sm shadow-lg ring-1 ring-black/5 p-5 rounded-xl font-bold">
+                  <div className="mx-auto text-center text-black flex flex-col w-1/4">
+                    <h1>Cues spotted by users</h1>
+                    <AdminPieChart />
+                  </div>
+                </div>
               ) : (
                 <div className="flex flex-col text-center">
                   <div className="flex flex-row mx-5">

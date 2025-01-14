@@ -18,6 +18,7 @@ type CardData = {
   from: String;
   subject: String;
   cues?: number;
+  context?: string;
 };
 
 type CueType =

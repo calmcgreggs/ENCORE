@@ -16,6 +16,8 @@ const fake1: CardData = {
   subject: "£300 Voucher for Your Next British Airways Flight",
   spam: true,
   cues: 5,
+  context:
+    "You are sitting at your office and decide to check your personal emails. You recieve this email, however you have not taken any flights with British Airways recently...",
 };
 r1.push(fake1);
 
@@ -30,6 +32,8 @@ const fake2: CardData = {
   subject: "URGENT : Download New Security Key",
   spam: true,
   cues: 7,
+  context:
+    "You work at Nukletech Inc. and was talking to the head of IT, Tim Hale, this morning. Nothing seemed out of the ordinary...",
 };
 r1.push(fake2);
 
@@ -43,6 +47,8 @@ const real1: CardData = {
   from: "timhale@nucletek.com",
   subject: "Patch updates for all employees",
   spam: false,
+  context:
+    "Tim mentioned to you this morning that a new zero day vulnerability has been discovered and the company would be sending out a patch update immediately...",
 };
 r1.push(real1);
 
@@ -56,6 +62,8 @@ const real2: CardData = {
   spam: false,
   from: "danlindsay@nucletek.com",
   subject: "Meeting Notes - Going Forward",
+  context:
+    "Yesterday, you had a meeting with your department, and Dan Lindsay, your coworker, was taking minutes and said that he would send them to you...",
 };
 r1.push(real2);
 
