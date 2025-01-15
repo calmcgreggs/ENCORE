@@ -1,6 +1,6 @@
 import { useState } from "react";
-import EmailHeader from "./EmailHeader";
-import FlagText from "./FlagText";
+import EmailHeader from "../../EmailHeader";
+import FlagText from "../../FlagText";
 
 export default function Fake2({
   from,

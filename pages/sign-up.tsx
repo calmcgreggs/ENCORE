@@ -33,6 +33,7 @@ export default function SignUp() {
         Initial_Score: -1,
         Progress: 0,
         UID: user.primaryEmailAddress.toString(),
+        Mid_Score: -1,
       })
         .then(() => {
           router.push("/dashboard");

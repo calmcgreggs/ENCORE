@@ -51,6 +51,7 @@ export const FirebaseProvider = ({ children }: { children: ReactNode }) => {
           Final_Score: data["Final_Score"],
           Progress: data["Progress"],
           Highscore: data["Highscore"] as number,
+          Mid_Score: data["Mid_Score"],
         });
       }
     } else {

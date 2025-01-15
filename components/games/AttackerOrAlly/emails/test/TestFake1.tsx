@@ -1,30 +1,20 @@
 import Image from "next/image";
-import { useState } from "react";
-import EmailHeader from "./EmailHeader";
-import FlagText from "./FlagText";
+import TestEmailHeader from "../../TestEmailHeader";
 
-export default function Fake1({
+export default function TestFake1({
   from,
   subject,
 }: {
   from: string;
   subject: string;
 }) {
-  const [flagged, setFlagged] = useState(false);
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 static">
-      <EmailHeader
+      <TestEmailHeader
         from={from}
         subject={subject}
-        flagged={flagged}
-        setFlagged={setFlagged}
-        frombad
-        subjectbad
-        emailNo={0}
-        iStart={3}
-        fromcue="SimilarDomain"
-        subjectcue="PositiveConsequences"
+
       />
       <Image
         className="mx-auto"
@@ -34,42 +24,22 @@ export default function Fake1({
         height="100"
       />
       <p className="select-none">
-        <FlagText
-          text="Hi there,"
-          flag={flagged}
-          emailNo={0}
-          index={0}
-          cue="ImpersonalGreeting"
-        />{" "}
+        Hi there,
         <br /> <br />
         We hope this message finds you well. <br />
         <br />
-        We are pleased to inform you that a{" "}
-        <FlagText
-          text="£300 British Airways travel voucher has been issued to you"
-          flag={flagged}
-          emailNo={0}
-          index={1}
-          cue="PositiveConsequences"
-        />
-        , which can be used on any of our future flights. This voucher has been
-        provided following a recent flight change that did not meet our usual
-        high standards. After a review by the Civil Aviation Authority (CAA), it
-        was determined that the notice provided fell short of the expected
-        minimum level. <br />
+        We are pleased to inform you that a £300 British Airways travel voucher
+        has been issued to you, which can be used on any of our future flights.
+        This voucher has been provided following a recent flight change that did
+        not meet our usual high standards. After a review by the Civil Aviation
+        Authority (CAA), it was determined that the notice provided fell short
+        of the expected minimum level. <br />
         <br />
         To make things right, we&#39;ve issued this voucher, which you can use
         for your next British Airways booking. You will find the voucher
         attached to this email. Alternatively, you can download it directly from
-        your British Airways account by logging in here:{" "}
-        <FlagText
-          text="https://accounts.br1ttishairways.com/flight-credit/login"
-          style="underline text-blue-400"
-          flag={flagged}
-          emailNo={0}
-          index={2}
-          cue={"SimilarDomain"}
-        />
+        your British Airways account by logging in
+        here:https://accounts.br1ttishairways.com/flight-credit/login
         <br />
         <br />
         The voucher can be redeemed easily online or through our customer

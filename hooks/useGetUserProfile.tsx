@@ -4,7 +4,6 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 export default async function useGetUserProfile(email: string) {
   let userprofile: UserProfile | null | undefined = null;
 
-
   const firebaseConfig = {
     apiKey: "AIzaSyD5kJ1uPo6EJwpaUYUt_5hXbnylwV7UkHY",
     authDomain: "encore-802db.firebaseapp.com",
@@ -28,7 +27,7 @@ export default async function useGetUserProfile(email: string) {
         Final_Score: data["Final_Score"],
         Progress: data["Progress"],
         Highscore: data["Highscore"],
-        
+        Mid_Score: data["Mid_Score"],
       };
     }
   }

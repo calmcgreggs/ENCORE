@@ -4,6 +4,7 @@ interface UserProfile {
   Final_Score: number;
   Progress: number;
   Highscore: number;
+  Mid_Score: number;
 }
 
 interface Course {

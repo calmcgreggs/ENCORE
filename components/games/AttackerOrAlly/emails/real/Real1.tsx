@@ -1,21 +1,26 @@
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
-import TestEmailHeader from "./TestEmailHeader";
+import EmailHeader from "../../EmailHeader";
+import { useState } from "react";
 
-export default function TestReal1({
+export default function Real1({
   from,
   subject,
 }: {
   from: string;
   subject: string;
 }) {
+  const [flagged, setFlagged] = useState(false);
   const user = useUser();
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 relative">
-      <TestEmailHeader
+      <EmailHeader
         from={from}
         subject={subject}
+        flagged={flagged}
+        setFlagged={setFlagged}
+        emailNo={2}
       />
       <Image
         className="mx-auto"

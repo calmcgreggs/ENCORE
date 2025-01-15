@@ -1,4 +1,7 @@
 import { testEmails } from "@/data/games/AttackerOrAlly";
+import useGetUserProfile from "@/hooks/useGetUserProfile";
+import useUpdateTestScore from "@/hooks/useUpdateTestScore";
+import { useUser } from "@clerk/nextjs";
 import {
   motion,
   useAnimationControls,
@@ -8,13 +11,15 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function EvaluationTest() {
+export default function InitialTest() {
   const [gameCards, setGameCards] = useState<CardData[]>(testEmails);
 
   const [gameOver, setGameOver] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
   const controls = useAnimationControls();
+
+  const { user } = useUser();
 
   useEffect(() => {
     setGameCards(gameCards.toSorted(() => Math.random() - 0.5));
@@ -38,6 +43,39 @@ export default function EvaluationTest() {
       setGameOver(true);
     }
   };
+
+  const [userProfile, setUserProfile] = useState<
+    UserProfile | null | undefined
+  >();
+
+  async function GetPF() {
+    if (user?.primaryEmailAddress?.toString()) {
+      setUserProfile(
+        // eslint-disable-next-line
+        await useGetUserProfile(user.primaryEmailAddress.toString())
+      );
+    }
+  }
+
+  useEffect(() => {
+    GetPF();
+  }, [user]);
+
+  useEffect(() => {
+    if (
+      gameOver == true &&
+      user?.primaryEmailAddress &&
+      userProfile &&
+      userProfile.Initial_Score == -1
+    ) {
+      // eslint-disable-next-line
+      useUpdateTestScore(
+        (correct / gameCards.length) * 100,
+        user?.primaryEmailAddress.toString(),
+        "Initial"
+      );
+    }
+  }, [gameOver, user, userProfile]);
 
   //Resets game on refresh
   useEffect(() => {
@@ -73,7 +111,9 @@ export default function EvaluationTest() {
     <div className="relative overflow-hidden ease-in-out transition-all duration-200 ">
       {!gameStarted ? (
         <div className="text-center gap-5 flex flex-col mt-10">
-          <h1 className="text-3xl font-bold">Welcome!</h1>
+          <h1 className="text-3xl font-bold">
+            Welcome to the Initial Evaluation Test!
+          </h1>
           <h1>
             You work for NucleTek, a Nuclear Research Lab. You will be shown 10
             sample emails and you need to choose whether they are genuine or

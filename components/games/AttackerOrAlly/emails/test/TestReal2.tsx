@@ -1,27 +1,19 @@
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
-import { useState } from "react";
-import EmailHeader from "./EmailHeader";
+import TestEmailHeader from "../../TestEmailHeader";
 
-export default function Real2({
+export default function TestReal2({
   from,
   subject,
 }: {
   from: string;
   subject: string;
 }) {
-  const [flagged, setFlagged] = useState(false);
   const user = useUser();
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 relative">
-      <EmailHeader
-        from={from}
-        subject={subject}
-        flagged={flagged}
-        setFlagged={setFlagged}
-        emailNo={3}
-      />
+      <TestEmailHeader from={from} subject={subject} />
       <Image
         className="mx-auto"
         src="/Nucletek.png"
@@ -33,8 +25,8 @@ export default function Real2({
         Hi {user.user?.firstName}, <br /> <br />
         Just sending over our notes from the meeting earlier. <br />
         <br />
-        If you could look at these in the next couple of days and see if there is
-        anything we can do to improve our PLC security that would be great.
+        If you could look at these in the next couple of days and see if there
+        is anything we can do to improve our PLC security that would be great.
         <br />
         <br />
         Cheers,

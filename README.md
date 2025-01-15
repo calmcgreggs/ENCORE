@@ -27,22 +27,22 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - ~~Create Game Flow~~
   - ~~Create Game Mechanics~~
   - ~~Create Reflection Flow + Mechanics~~
-    -~~ Create final page after reflection (or even just a button that shows up taking back to dashboard)~~
+  - ~~ Create final page after reflection (or even just a button that shows up taking back to dashboard)~~
 - Create Content For Game (Scenario Development)
   - Find repository of emails
   - Modify and label emails
   - Create React Clones
   - Add to Game
   - Randomisation of Emails
-  - Sort directory structure for organising emails
+  - ~~Sort directory structure for organising emails~~
 - Data Aggregation Feature
   - ~~Implement Manager Permissions~~
   - Create Manager Dashboard
   - ~~Tag FlagText elements with type of cue description for data aggregation~~
   - ~~Aggregate highscore data for user on dashboard~~
 - Evaluation
-  - Create Pre, Mid and Post Tests with randomised data
-  - Link up to firebase and make neccessary changes on signup + for current accounts
+  - ~~Create Pre, Mid and Post Tests with randomised data~~
+  - ~~Link up to firebase and make neccessary changes on signup + for current accounts~~
   - Modify emails for tests so they don't error because of flagtext
 - Stretch Goals
   - Different Click Colours to denote different cue types (e.g. similar domain etc.)

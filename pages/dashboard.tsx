@@ -4,6 +4,7 @@ import AdminPieChart from "@/components/dashboard/PieChart";
 import DashboardTopic from "@/components/dashboard/topic";
 import courses from "@/data/courses";
 import dev from "@/data/developer_mode";
+import useGetAllUserProfiles from "@/hooks/useGetAllUserProfiles";
 import useGetUserProfile from "@/hooks/useGetUserProfile";
 import useIncrementPageProgress from "@/hooks/useIncrementPageProgress";
 import { useUser } from "@clerk/nextjs";
@@ -28,6 +29,12 @@ export default function Dashboard() {
       );
       setLoading(false);
     }
+  }
+
+  function GetPFs() {
+    useGetAllUserProfiles().then((ups) => {
+      setUserProfiles(ups);
+    });
   }
 
   // async function SetPF(field: string, data: any) {
@@ -64,9 +71,9 @@ export default function Dashboard() {
     GetPF();
   }, [user]);
 
-  useEffect(() => {
-    console.log(userProfile);
-  }, [userProfile]);
+  // useEffect(() => {
+  //   console.log(userProfile);
+  // }, [userProfile]);
 
   type Tab = "Topics" | "Tests" | "Highscores";
   type AdminTab = "Overview" | "Employee Scores" | "Cue Breakdown";
@@ -74,13 +81,17 @@ export default function Dashboard() {
   const [tab, setTab] = useState<Tab>("Topics");
   const [adminTab, setAdminTab] = useState<AdminTab>("Overview");
 
+  const [userProfiles, setUserProfiles] = useState<UserProfile[]>([]);
+
   useEffect(() => {
     if (
       user &&
       user.organizationMemberships[0] &&
       user?.organizationMemberships[0]["role"] == "org:manager"
-    )
+    ) {
       setIsAdmin(true);
+      GetPFs();
+    }
   }, [user]);
 
   return (
@@ -129,7 +140,6 @@ export default function Dashboard() {
               })}
             </div>
             {tab == "Topics" ? (
-              // Next step - Link to actual course pages and create training navigation within pages
               <div className=" [&>*]:p-10 p-10 flex-col   transition-all duration-1000 ease-in-out ">
                 {courses.map((each, i) => {
                   return (
@@ -183,14 +193,13 @@ export default function Dashboard() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 w-11/12 mx-auto   [&>*]:p-5 rounded-xl text-white transition-all duration-1000 ease-in-out [&>*]:border-t-2 [&>*]:border-b-2 ">
+              <div className="grid grid-cols-3 w-11/12 mx-auto   [&>*]:p-5 rounded-xl text-white transition-all duration-1000 ease-in-out [&>*]:border-t-2 [&>*]:border-b-2 ">
                 <div className="border-white border-r-2">
                   <h1 className="xl:text-3xl font-bold mb-5">Initial Test</h1>
                   <h1 className="font-extralight xl:text-base text-sm xl:h-1/4 h-1/2">
                     This test is designed to be taken at the start of your
-                    ENCORE training journey. This should indicate your current
-                    level of cybersecurity knowledge with regard to Industrial
-                    Control Systems
+                    ENCORE training journey. This should establish your baseline
+                    level of phishing awareness.
                   </h1>
                   <div className="xl:grid xl:grid-cols-2 mt-10 gap-4 xl:gap-0 [&>*]:mx-5">
                     <h1 className="xl:text-base my-auto font-bold text-center text-sm ">
@@ -199,17 +208,69 @@ export default function Dashboard() {
                           {" "}
                         </span>
                       ) : userProfile?.Initial_Score != -1 ? (
-                        "Previous Score - " + userProfile?.Initial_Score + "%"
+                        "Initial Score - " + userProfile?.Initial_Score + "%"
                       ) : (
                         "Not Completed Yet"
                       )}
                     </h1>
-                    <button
-                      disabled
-                      className="bg-red-900 p-3 font-bold text-white my-5 text-sm"
-                    >
-                      Can&apos;t retake this test
-                    </button>
+                    {!loading &&
+                      (userProfile?.Initial_Score != -1 ? (
+                        <button
+                          disabled
+                          className="bg-red-900 p-3 font-bold text-white my-5 text-sm"
+                        >
+                          Can&apos;t retake this test
+                        </button>
+                      ) : (
+                        <button className="bg-green-900 p-3 font-bold text-white my-5 text-sm">
+                          <Link href="/tests/initial">Take Test</Link>
+                        </button>
+                      ))}
+                  </div>
+                </div>
+                <div className="border-white border-r-2">
+                  <h1 className="xl:text-3xl font-bold mb-5">
+                    Mid-Training Test
+                  </h1>
+                  <h1 className="font-extralight xl:text-base text-sm xl:h-1/4 h-1/2">
+                    This test is designed to be taken in the middle of your
+                    ENCORE training journey. This should indicate your current
+                    level of phishing awareness after the written training
+                    section.
+                  </h1>
+                  <div className="xl:grid xl:grid-cols-2 mt-10 gap-4 xl:gap-0 [&>*]:mx-5">
+                    <h1 className="xl:text-base my-auto font-bold text-center text-sm ">
+                      {loading ? (
+                        <span className="loading loading-spinner loading-xs mx-auto ">
+                          {" "}
+                        </span>
+                      ) : userProfile?.Mid_Score != -1 ? (
+                        "Mid-Test Score - " + userProfile?.Mid_Score + "%"
+                      ) : (
+                        "Not Completed Yet"
+                      )}
+                    </h1>
+
+                    {!loading &&
+                      (userProfile?.Mid_Score != -1 ? (
+                        <button
+                          disabled
+                          className="bg-red-900 p-3 font-bold text-white my-5 text-sm"
+                        >
+                          Can&apos;t retake this test
+                        </button>
+                      ) : userProfile.Initial_Score != -1 ? (
+                        <button className="bg-green-900 p-3 font-bold text-white my-5 text-sm">
+                          <Link href="/tests/mid">Take Test</Link>
+                        </button>
+                      ) : (
+                        <button
+                          disabled
+                          className="bg-red-900 p-3 font-bold text-white my-5 text-sm"
+                        >
+                          Can&apos;t take this test yet
+                        </button>
+                      ))}
                   </div>
                 </div>
                 <div className="">
@@ -217,8 +278,7 @@ export default function Dashboard() {
                   <h1 className="font-extralight xl:text-base text-sm xl:h-1/4">
                     This test is designed to be taken at the end of your ENCORE
                     training journey. This should indicate your final level of
-                    cybersecurity knowledge with regard to Industrial Control
-                    Systems
+                    phishing awareness after completing both training mediums.
                   </h1>
                   <div className="xl:grid xl:grid-cols-2 mt-10 gap-2 xl:gap-0 [&>*]:mx-5">
                     <h1 className="xl:text-base my-auto font-bold text-center text-sm ">
@@ -227,17 +287,32 @@ export default function Dashboard() {
                           {" "}
                         </span>
                       ) : userProfile?.Final_Score != -1 ? (
-                        "Previous Score - " + userProfile?.Final_Score + "%"
+                        "Final Score - " + userProfile?.Final_Score + "%"
                       ) : (
                         "Not Completed Yet"
                       )}
                     </h1>
-                    <button
-                      disabled
-                      className="bg-green-900 p-3 font-bold text-white my-5 text-sm"
-                    >
-                      Retry Test
-                    </button>
+                    {!loading &&
+                      (userProfile?.Final_Score != -1 ? (
+                        <button
+                          disabled
+                          className="bg-red-900 p-3 font-bold text-white my-5 text-sm"
+                        >
+                          Can&apos;t retake this test
+                        </button>
+                      ) : userProfile.Initial_Score != -1 &&
+                        userProfile.Mid_Score != -1 ? (
+                        <button className="bg-green-900 p-3 font-bold text-white my-5 text-sm">
+                          <Link href="/tests/final">Take Test</Link>
+                        </button>
+                      ) : (
+                        <button
+                          disabled
+                          className="bg-red-900 p-3 font-bold text-white my-5 text-sm"
+                        >
+                          Can&apos;t take this test yet
+                        </button>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -295,6 +370,7 @@ export default function Dashboard() {
               ) : adminTab == "Cue Breakdown" ? (
                 <div className="flex m-5 bg-white/30 isolate backdrop-blur-sm shadow-lg ring-1 ring-black/5 p-5 rounded-xl font-bold">
                   <div className="mx-auto text-center text-black flex flex-col w-1/4">
+                    {/* TODO: This needs to be made dynamic */}
                     <h1>Cues spotted by users</h1>
                     <AdminPieChart />
                   </div>
@@ -302,7 +378,12 @@ export default function Dashboard() {
               ) : (
                 <div className="flex flex-col text-center">
                   <div className="flex flex-row mx-5">
-                    {["ID", "Date", "Score", "Feedback"].map((each, i) => {
+                    {[
+                      "ID",
+                      "Initial Score",
+                      "Mid-Test Score",
+                      "Final Score",
+                    ].map((each, i) => {
                       return (
                         <h1 className="text-2xl w-1/4 font-bold" key={i}>
                           {each}
@@ -314,9 +395,9 @@ export default function Dashboard() {
                     id="EmployeeResults"
                     className="mx-5 my-2 gap-5 flex flex-col"
                   >
-                    <EmployeeScore date={new Date()} percentage={60} id="1" />
-                    <EmployeeScore date={new Date()} percentage={14} id="2" />
-                    <EmployeeScore date={new Date()} percentage={89} id="3" />
+                    {userProfiles.map((each, i) => {
+                      return <EmployeeScore pf={each} i={i + 1} key={i} />;
+                    })}
                   </div>
                 </div>
               )}

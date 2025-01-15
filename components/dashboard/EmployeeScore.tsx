@@ -1,21 +1,21 @@
 export default function EmployeeScore({
-  id,
-  date,
-  percentage,
+  pf,
+  i,
 }: {
-  id: string;
-  date: Date;
-  percentage: number;
+  pf: UserProfile;
+  i: number;
 }) {
   //At some point, got to figure out viewing strategy, could do seperate URLs and use ID as slug?
   return (
     <div className="bg-slate-300 rounded-xl flex flex-row [&>*]:w-1/4 text-black py-2 font-bold ">
-      <h1>{id}</h1>
-      <h1>{date.toDateString()}</h1>
-      <h1>{percentage}%</h1>
-      <div>
-        <button className="bg-red-700 text-white px-10 rounded-xl">View</button>
-      </div>
+      <h1>{i}</h1>
+      <h1>
+        {pf.Initial_Score >= 0 ? pf.Initial_Score + "%" : "Not Completed Yet"}
+      </h1>
+      <h1>{pf.Mid_Score >= 0 ? pf.Mid_Score + "%" : "Not Completed Yet"}</h1>
+      <h1>
+        {pf.Final_Score >= 0 ? pf.Final_Score + "%" : "Not Completed Yet"}
+      </h1>
     </div>
   );
 }

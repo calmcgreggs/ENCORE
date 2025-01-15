@@ -1,11 +1,11 @@
-import Fake1 from "@/components/games/AttackerOrAlly/Fake1";
-import Fake2 from "@/components/games/AttackerOrAlly/Fake2";
-import Real1 from "@/components/games/AttackerOrAlly/Real1";
-import Real2 from "@/components/games/AttackerOrAlly/Real2";
-import TestFake1 from "@/components/games/AttackerOrAlly/TestFake1";
-import TestFake2 from "@/components/games/AttackerOrAlly/TestFake2";
-import TestReal1 from "@/components/games/AttackerOrAlly/TestReal1";
-import TestReal2 from "@/components/games/AttackerOrAlly/TestReal2";
+import Fake1 from "@/components/games/AttackerOrAlly/emails/fake/Fake1";
+import Fake2 from "@/components/games/AttackerOrAlly/emails/fake/Fake2";
+import Real1 from "@/components/games/AttackerOrAlly/emails/real/Real1";
+import Real2 from "@/components/games/AttackerOrAlly/emails/real/Real2";
+import TestFake1 from "@/components/games/AttackerOrAlly/emails/test/TestFake1";
+import TestFake2 from "@/components/games/AttackerOrAlly/emails/test/TestFake2";
+import TestReal1 from "@/components/games/AttackerOrAlly/emails/test/TestReal1";
+import TestReal2 from "@/components/games/AttackerOrAlly/emails/test/TestReal2";
 
 var r1: CardData[] = [];
 

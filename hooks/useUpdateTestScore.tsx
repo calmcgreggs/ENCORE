@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
 
-export default async function useUpdateHighScore(
-  highscore: number,
-  email: string
+export default async function useUpdateTestScore(
+  score: number,
+  email: string,
+  type: "Initial" | "Mid" | "Final"
 ) {
   const firebaseConfig = {
     apiKey: "AIzaSyD5kJ1uPo6EJwpaUYUt_5hXbnylwV7UkHY",
@@ -19,9 +20,19 @@ export default async function useUpdateHighScore(
   const db = getFirestore(app);
 
   if (db && email) {
-    await updateDoc(doc(db, "users", email), {
-      Highscore: highscore,
-    });
+    if (type == "Initial") {
+      await updateDoc(doc(db, "users", email), {
+        Initial_Score: score,
+      });
+    } else if (type == "Mid") {
+      await updateDoc(doc(db, "users", email), {
+        Mid_Score: score,
+      });
+    } else {
+      await updateDoc(doc(db, "users", email), {
+        Final_Score: score,
+      });
+    }
   }
   return null;
 }

@@ -1,4 +1,4 @@
-import TestEmailHeader from "./TestEmailHeader";
+import TestEmailHeader from "../../TestEmailHeader";
 
 export default function TestFake2({
   from,
@@ -7,21 +7,17 @@ export default function TestFake2({
   from: string;
   subject: string;
 }) {
-
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 static">
-      <TestEmailHeader
-        from={from}
-        subject={subject}
-      />
+      <TestEmailHeader from={from} subject={subject} />
       <p className="select-none">
         Hello user,
         <br /> <br />
         In order to protect your system account from fraud, we have introduced a
         new security key system <br />
         <br />
-        It&apos;s important you do this urntly, As malicious actors could try and
-        attack our systems at any minute
+        It&apos;s important you do this urntly, As malicious actors could try
+        and attack our systems at any minute
         <br />
         <br />
         Please download this key as an attachment and install the software on
