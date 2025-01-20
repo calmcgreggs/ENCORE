@@ -2,7 +2,7 @@ import { useState } from "react";
 import EmailHeader from "../../../EmailHeader";
 import FlagText from "../../../FlagText";
 
-export default function Fake7({
+export default function Fake8({
   from,
   subject,
   emailNo,

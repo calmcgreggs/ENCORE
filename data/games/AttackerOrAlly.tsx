@@ -4,6 +4,7 @@ import Fake3 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake3";
 import Fake4 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake4";
 import Fake5 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake5";
 import Fake6 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake6";
+import Fake7 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake7";
 import Real1 from "@/components/games/AttackerOrAlly/emails/real/Real1";
 import Real2 from "@/components/games/AttackerOrAlly/emails/real/Real2";
 import Real3 from "@/components/games/AttackerOrAlly/emails/real/Real3";
@@ -46,12 +47,12 @@ r1.push(fake1);
 const fake2: CardData = {
   card: (
     <Fake2
-      from="itdeparment@nukletech.com"
+      from="itdeparment@company.com"
       subject="URGENT : Download New Security Key"
       emailNo={1}
     />
   ),
-  from: "itdeparment@nukletech.com",
+  from: "itdeparment@company.com",
   subject: "URGENT : Download New Security Key",
   spam: true,
   cues: 7,
@@ -241,13 +242,13 @@ r2.push(real6);
 const real7: CardData = {
   card: (
     <Real7
-      from="operations@scottishwater.co.uk"
-      subject="Weekly Report: Control System Performance Metrics"
+      from="monitoring@nucletek.com"
+      subject="Notification: Threshold Breach in Pressure System"
       emailNo={2}
     />
   ),
-  from: "operations@scottishwater.co.uk",
-  subject: "Weekly Report: Control System Performance Metrics",
+  from: "monitoring@nucletek.com",
+  subject: "Notification: Threshold Breach in Pressure Systems",
   spam: false,
   context: "TBC",
 };
@@ -255,24 +256,40 @@ r2.push(real7);
 
 const fake7: CardData = {
   card: (
-    <Fake6
-      from="support@automation-patch.net"
-      subject="Firmware Update for PLC Model X300"
-      emailNo={0}
+    <Fake7
+      from="recalls@controllerupdates.net"
+      subject="Urgent Recall: ICS Controller Model 789"
+      emailNo={3}
     />
   ),
-  from: "support@automation-patch.net",
-  subject: "Firmware Update for PLC Model X300",
+  from: "recalls@controllerupdates.net",
+  subject: "Urgent Recall: ICS Controller Model 789",
   spam: true,
-  cues: 6,
+  cues: 7,
   context: "TBC",
 };
-r2.push(fake6);
+r2.push(fake7);
+
+//Not finished yet
+const fake8: CardData = {
+  card: (
+    <Fake7
+      from="recalls@controllerupdates.net"
+      subject="Urgent Recall: ICS Controller Model 789"
+      emailNo={3}
+    />
+  ),
+  from: "recalls@controllerupdates.net",
+  subject: "Urgent Recall: ICS Controller Model 789",
+  spam: true,
+  cues: 7,
+  context: "TBC",
+};
+r2.push(fake8);
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -                                                                       ROUND THREE                                                                                     -
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 var r3: CardData[] = [];
 

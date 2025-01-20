@@ -30,7 +30,7 @@ export default function Real6({
         height="100"
       />
       <p className="pointer-events-none">
-        Hello Operations Team,, <br /> <br />
+        Hello Operations Team, <br /> <br />
         Please find attached the weekly performance metrics for the water
         distribution control system. Key highlights are as follows:
       </p>{" "}

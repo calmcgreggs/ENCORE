@@ -24,32 +24,29 @@ export default function Real7({
       />
       <Image
         className="mx-auto"
-        src="/ScottishWater.png"
+        src="/Nucletek.png"
         alt="Nucletek Logo"
-        width="300"
+        width="150"
         height="100"
       />
       <p className="pointer-events-none">
-        Hello Operations Team,, <br /> <br />
-        Please find attached the weekly performance metrics for the water
-        distribution control system. Key highlights are as follows:
+        Attention Operators, <br /> <br />
+        The pressure system in Zone 5 has exceeded the operational threshold.
       </p>{" "}
       <br />
       <ul className="list-disc px-5">
-        <li>Average Pump Efficiency: 92.7%</li>
-        <li>Flow Rate Consistency: Within acceptable thresholds (±3%)</li>
-        <li>Alerts Triggered: 4 minor alerts, no critical issues</li>
+        <li>Threshold: 120 PSI</li>
+        <li>Current Reading: 135 PSI</li>
+        <li>Time of Breach: {new Date().toDateString()}, 04:15 AM UTC</li>
       </ul>{" "}
       <br />
-      We recommend reviewing the Zone 3 pump efficiency, which has shown a
-      slight decrease compared to the previous week. Further investigation may
-      be required.
+      Immediate action is required to bring the system within acceptable limits
+      to prevent equipment damage. Contact the monitoring team if additional
+      support is needed.
       <p>
-        <br />
-        Please let us know if you have any concerns or require additional data.
         <br /> <br />
-        Best regards,
-        <br /> <br /> Operations Team
+        Regards,
+        <br /> <br /> ICS Monitoring Team
       </p>
     </div>
   );
