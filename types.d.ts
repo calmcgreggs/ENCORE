@@ -31,4 +31,9 @@ type CueType =
   | "PositiveConsequences"
   | "NegativeConsequences"
   | "Nonsense"
-  | "MaliciousAttachment";
+  | "MaliciousAttachment"
+  | "UnfamiliarURL"
+  | "UnfamiliarDomain"
+  | "FurtherContact"
+  | "Generic"
+  | "MasqueradingLink";

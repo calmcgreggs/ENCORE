@@ -28,11 +28,9 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - ~~Create Game Mechanics~~
   - ~~Create Reflection Flow + Mechanics~~
   - ~~Create final page after reflection (or even just a button that shows up taking back to dashboard)~~
+  - ~~Introduce click limit into attacker or ally~~
 - Create Content For Game (Scenario Development)
-  - Find repository of emails
-  - Modify and label emails
-  - Create React Clones
-  - Add to Game
+  - Create React Clones and Add to Game
   - Randomisation of Emails
   - ~~Sort directory structure for organising emails~~
 - Data Aggregation Feature

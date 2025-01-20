@@ -28,6 +28,19 @@ export default function AttackerOrAlly() {
     UserProfile | null | undefined
   >();
 
+  const debug = true;
+
+  // Fisher-Yates Algorithm - From https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+  // const shuffleArray = (array: any[]) => {
+  //   for (let i = array.length - 1; i > 0; i--) {
+  //     const j = Math.floor(Math.random() * (i + 1));
+  //     const temp = array[i];
+  //     array[i] = array[j];
+  //     array[j] = temp;
+  //   }
+  //   return array;
+  // };
+
   async function GetPF() {
     if (user?.primaryEmailAddress?.toString()) {
       setUserProfile(
@@ -170,13 +183,27 @@ export default function AttackerOrAlly() {
       }
     });
     setRoundScores([r1, r2, r3]);
-  }, [roundOneEmails, roundTwoEmails]);
+  }, [roundOneEmails, roundTwoEmails, roundThreeEmails]);
 
   // Used to restart game but disabled during development. TODO : Enable this later
+  // useEffect(() => {
+  //   setRound(-1);
+  //   setReflection(false);
+  // }, []);
+
+  //Click limiting work
+  const [clicksLeft, setClicksLeft] = useState(15);
+
   useEffect(() => {
-    setRound(-1);
-    setReflection(false);
-  }, []);
+    setClicksLeft(15);
+    setCurrentEmail(0);
+  }, [round]);
+
+  useEffect(() => {
+    if (clicksLeft < 0) {
+      setRound(round + 1);
+    }
+  }, [clicksLeft]);
 
   return round == -1 ? (
     <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20">
@@ -203,12 +230,13 @@ export default function AttackerOrAlly() {
   ) : round < 3 ? (
     <div className="p-10 bg-blue-800 text-white flex flex-row h-[90vh] border border-white relative">
       <h1 className="absolute top-0 left-0 border-r px-2 border-b">
-        Round {round + 1} {reflection ? "Reflection" : ""}
+        Round {round + 1}{" "}
+        {reflection ? "Reflection" : " | Clicks left - " + clicksLeft}
       </h1>
       <div className="absolute top-2 right-2">
         {!reflection && (
           <CountdownCircleTimer
-            isPlaying={reflection ? false : true}
+            isPlaying={reflection ? false : !debug}
             onComplete={() => {
               setRound(round + 1);
               return { shouldRepeat: true, delay: 1.5 };
@@ -222,7 +250,10 @@ export default function AttackerOrAlly() {
           </CountdownCircleTimer>
         )}
       </div>
-      <div id="message-pane" className="w-1/4 border-r-2 border-white ">
+      <div
+        id="message-pane"
+        className="w-1/4 border-r-2 border-white overflow-y-scroll no-scrollbar "
+      >
         <h1 className="font-bold">Inbox</h1>
         <h1>{user?.primaryEmailAddress?.toString()}</h1>
         <div className={"[&>*]:mb-2 mt-10 mr-2 select-none"}>
@@ -252,8 +283,16 @@ export default function AttackerOrAlly() {
             })}
         </div>
       </div>
-      <div id="email-pane" className="w-3/4 relative">
-        {cards && cards[currentEmail].context ? (
+      <div
+        id="email-pane"
+        className="w-3/4 relative"
+        onClick={() => {
+          if (!debug) {
+            setClicksLeft(clicksLeft - 1);
+          }
+        }}
+      >
+        {cards && cards[currentEmail].context! ? (
           <div className="absolute -bottom-2 w-2/3 mt-5 left-1/2 transform -translate-x-1/2 text-center text-white italic animate-pulse">
             <h1>{cards[currentEmail].context}</h1>
           </div>
@@ -276,7 +315,7 @@ export default function AttackerOrAlly() {
       </button>
     </div>
   ) : (
-    <div className="">
+    <div className="overflow-y-scroll no-scrollbar">
       <h1 className="text-center text-xl mt-5 font-bold">
         Round {(round % 3) + 1} Results:
       </h1>
@@ -327,18 +366,18 @@ export default function AttackerOrAlly() {
           </div>
         );
       })}
-      <div className="text-center text-xl font-bold">
+      <div className="text-center text-xl font-bold mb-10 pt-5">
         Total Points - {calculateTotalPoints().join("/")}{" "}
       </div>
       {reflection && (
         <Link href="/dashboard">
-          <button className="absolute bottom-2 left-0 bg-red-400 p-4 border-white border-2 hover:bg-green-600">
+          <button className="fixed bottom-2 left-0 bg-red-400 p-4 border-white border-2 hover:bg-green-600">
             Dashboard
           </button>
         </Link>
       )}
       <button
-        className="absolute bottom-2 right-0 bg-green-400 p-4 border-white border-2 hover:bg-green-600"
+        className="fixed bottom-2 right-0 bg-green-400 p-4 border-white border-2 hover:bg-green-600"
         onClick={() => {
           if (round == 5) {
             setRound(0);

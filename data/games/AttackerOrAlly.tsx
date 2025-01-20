@@ -1,12 +1,29 @@
-import Fake1 from "@/components/games/AttackerOrAlly/emails/fake/Fake1";
-import Fake2 from "@/components/games/AttackerOrAlly/emails/fake/Fake2";
+import Fake1 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake1";
+import Fake2 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake2";
+import Fake3 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake3";
+import Fake4 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake4";
+import Fake5 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake5";
+import Fake6 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake6";
 import Real1 from "@/components/games/AttackerOrAlly/emails/real/Real1";
 import Real2 from "@/components/games/AttackerOrAlly/emails/real/Real2";
+import Real3 from "@/components/games/AttackerOrAlly/emails/real/Real3";
+import Real4 from "@/components/games/AttackerOrAlly/emails/real/Real4";
+import Real5 from "@/components/games/AttackerOrAlly/emails/real/Real5";
+import Real6 from "@/components/games/AttackerOrAlly/emails/real/Real6";
+import Real7 from "@/components/games/AttackerOrAlly/emails/real/Real7";
 import TestFake1 from "@/components/games/AttackerOrAlly/emails/test/TestFake1";
 import TestFake2 from "@/components/games/AttackerOrAlly/emails/test/TestFake2";
 import TestReal1 from "@/components/games/AttackerOrAlly/emails/test/TestReal1";
 import TestReal2 from "@/components/games/AttackerOrAlly/emails/test/TestReal2";
 
+//TODO
+// - Everything needs renamed (e.g. const fake13)
+// - Possible tidy up?
+// - Finish emails
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -                                                                       ROUND ONE                                                                                       -
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 var r1: CardData[] = [];
 
 const fake1: CardData = {
@@ -14,6 +31,7 @@ const fake1: CardData = {
     <Fake1
       from="british-airways@alerting-services.com"
       subject="£300 Voucher for Your Next British Airways Flight"
+      emailNo={0}
     />
   ),
   from: "british-airways@alerting-services.com",
@@ -30,6 +48,7 @@ const fake2: CardData = {
     <Fake2
       from="itdeparment@nukletech.com"
       subject="URGENT : Download New Security Key"
+      emailNo={1}
     />
   ),
   from: "itdeparment@nukletech.com",
@@ -46,6 +65,7 @@ const real1: CardData = {
     <Real1
       from="timhale@nucletek.com"
       subject="Patch updates for all employees"
+      emailNo={2}
     />
   ),
   from: "timhale@nucletek.com",
@@ -61,6 +81,7 @@ const real2: CardData = {
     <Real2
       from="danlindsay@nucletek.com"
       subject="Meeting Notes - Going Forward"
+      emailNo={3}
     />
   ),
   spam: false,
@@ -71,117 +92,209 @@ const real2: CardData = {
 };
 r1.push(real2);
 
-var r2: CardData[] = [];
-
 const fake3: CardData = {
   card: (
-    <Fake1
-      from="british-airways@alerting-services.com"
-      subject="£300 Voucher for Your Next British Airways Flight"
+    <Fake3
+      subject="Immediate Action Required: SCADA Software Update"
+      from="it-support@criticalupdates-systems.com"
+      emailNo={4}
     />
   ),
-  from: "british-airways@alerting-services.com",
-  subject: "£300 Voucher for Your Next British Airways Flight",
   spam: true,
-  cues: 5,
+  from: "it-support@criticalupdates-systems.com",
+  subject: "Immediate Action Required: SCADA Software Update",
+  context:
+    "You receive this email 15 minutes before the end of the working day. You haven't been notified of any SCADA updates...",
+  cues: 7,
 };
-r2.push(fake3);
+r1.push(fake3);
 
 const fake4: CardData = {
   card: (
-    <Fake2
-      from="itdeparment@nukletech.com"
-      subject="URGENT : Download New Security Key"
+    <Fake4
+      subject="Complete Mandatory ICS Cybersecurity Training"
+      from="training@secure-awareness-training.com"
+      emailNo={5}
     />
   ),
-  from: "itdeparment@nukletech.com",
-  subject: "2URGENT : Download New Security Key",
   spam: true,
-  cues: 7,
+  from: "training@secure-awareness-training.com",
+  subject: "Complete Mandatory ICS Cybersecurity Training",
+  context:
+    "In your team meeting this morning, everything seemed normal. Your workplace has had no security incidents in the past 5 years...",
+  cues: 6,
 };
-r2.push(fake4);
+r1.push(fake4);
+
+const fake5: CardData = {
+  card: (
+    <Fake5
+      subject="Critical Assistance Needed for PLC Malfunction"
+      from="support@plc-tech-support.com"
+      emailNo={6}
+    />
+  ),
+  spam: true,
+  from: "support@plc-tech-support.com",
+  subject: "Critical Assistance Needed for PLC Malfunction",
+  context:
+    "After receiving this email, you checked the PLC monitoring system. Nothing seems out of the ordinary...",
+  cues: 6,
+};
+r1.push(fake5);
 
 const real3: CardData = {
   card: (
-    <Real1
-      from="timhale@nucletek.com"
-      subject="Patch updates for all employees"
+    <Real3
+      from="jamienewton@nucletek.com"
+      subject="Scheduled Maintainence"
+      emailNo={7}
     />
   ),
-  from: "timhale@nucletek.com",
-  subject: "2Patch updates for all employees",
   spam: false,
+  from: "jamienewton@nucletek.com",
+  subject: "Scheduled Maintainence",
+  context:
+    "Yesterday, you had a meeting with your department, and Dan Lindsay, your coworker, was taking minutes and said that he would send them to you...",
 };
-r2.push(real3);
+r1.push(real3);
 
 const real4: CardData = {
   card: (
-    <Real2
-      from="danlindsay@nucletek.com"
-      subject="2Meeting Notes - Going Forward"
+    <Real4
+      from="benmackintosh@siemens.com"
+      subject="Firmware Update for Simatic S7-1200"
+      emailNo={7}
     />
   ),
   spam: false,
-  from: "danlindsay@nucletek.com",
-  subject: "Meeting Notes - Going Forward",
+  from: "benmackintosh@siemens.com",
+  subject: "Firmware Update for Simatic S7-1200",
+  context:
+    "A new critical vulnerability, CVE-2025-41783, has been recently been discovered",
 };
-r2.push(real4);
+r1.push(real4);
+
+const real5: CardData = {
+  card: (
+    <Real5
+      from="alerts@nucletek.com"
+      subject="Critical Alert: PLC Communication Failure Detected"
+      emailNo={7}
+    />
+  ),
+  spam: false,
+  from: "alerts@nucletek.com",
+  subject: "Critical Alert: PLC Communication Failure Detected",
+  context:
+    "A new critical vulnerability, CVE-2025-41783, has been recently been discovered",
+};
+r1.push(real5);
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -                                                                       ROUND TWO                                                                                       -
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// S
+// R
+// R
+// S
+// S
+// R
+// R
+// S
+// S
+// R
+
+var r2: CardData[] = [];
+
+const fake6: CardData = {
+  card: (
+    <Fake6
+      from="support@automation-patch.net"
+      subject="Firmware Update for PLC Model X300"
+      emailNo={0}
+    />
+  ),
+  from: "support@automation-patch.net",
+  subject: "Firmware Update for PLC Model X300",
+  spam: true,
+  cues: 6,
+  context: "TBC",
+};
+r2.push(fake6);
+
+const real6: CardData = {
+  card: (
+    <Real6
+      from="operations@scottishwater.co.uk"
+      subject="Weekly Report: Control System Performance Metrics"
+      emailNo={1}
+    />
+  ),
+  from: "operations@scottishwater.co.uk",
+  subject: "Weekly Report: Control System Performance Metrics",
+  spam: false,
+  context: "TBC",
+};
+r2.push(real6);
+
+const real7: CardData = {
+  card: (
+    <Real7
+      from="operations@scottishwater.co.uk"
+      subject="Weekly Report: Control System Performance Metrics"
+      emailNo={2}
+    />
+  ),
+  from: "operations@scottishwater.co.uk",
+  subject: "Weekly Report: Control System Performance Metrics",
+  spam: false,
+  context: "TBC",
+};
+r2.push(real7);
+
+const fake7: CardData = {
+  card: (
+    <Fake6
+      from="support@automation-patch.net"
+      subject="Firmware Update for PLC Model X300"
+      emailNo={0}
+    />
+  ),
+  from: "support@automation-patch.net",
+  subject: "Firmware Update for PLC Model X300",
+  spam: true,
+  cues: 6,
+  context: "TBC",
+};
+r2.push(fake6);
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -                                                                       ROUND THREE                                                                                     -
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 var r3: CardData[] = [];
 
-const fake5: CardData = {
+const fake11: CardData = {
   card: (
     <Fake1
       from="british-airways@alerting-services.com"
       subject="£300 Voucher for Your Next British Airways Flight"
+      emailNo={0}
     />
   ),
   from: "british-airways@alerting-services.com",
   subject: "3£300 Voucher for Your Next British Airways Flight",
   spam: true,
   cues: 5,
+  context: "TBC",
 };
-r3.push(fake5);
+r3.push(fake11);
 
-const fake6: CardData = {
-  card: (
-    <Fake2
-      from="itdeparment@nukletech.com"
-      subject="URGENT : Download New Security Key"
-    />
-  ),
-  from: "itdeparment@nukletech.com",
-  subject: "3URGENT : Download New Security Key",
-  spam: true,
-  cues: 7,
-};
-r3.push(fake6);
-
-const real5: CardData = {
-  card: (
-    <Real1
-      from="timhale@nucletek.com"
-      subject="Patch updates for all employees"
-    />
-  ),
-  from: "timhale@nucletek.com",
-  subject: "3Patch updates for all employees",
-  spam: false,
-};
-r3.push(real5);
-
-const real6: CardData = {
-  card: (
-    <Real2
-      from="danlindsay@nucletek.com"
-      subject="3Meeting Notes - Going Forward"
-    />
-  ),
-  spam: false,
-  from: "danlindsay@nucletek.com",
-  subject: "Meeting Notes - Going Forward",
-};
-r3.push(real6);
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -                                                                       TEST EMAILS                                                                                     -
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 var test: CardData[] = [];
 
@@ -196,6 +309,7 @@ const testfake1: CardData = {
   subject: "3£300 Voucher for Your Next British Airways Flight",
   spam: true,
   cues: 5,
+  context: "TBC",
 };
 test.push(testfake1);
 
@@ -210,6 +324,7 @@ const testfake2: CardData = {
   subject: "3URGENT : Download New Security Key",
   spam: true,
   cues: 7,
+  context: "TBC",
 };
 test.push(testfake2);
 
@@ -223,6 +338,7 @@ const testreal1: CardData = {
   from: "timhale@nucletek.com",
   subject: "3Patch updates for all employees",
   spam: false,
+  context: "TBC",
 };
 test.push(testreal1);
 
@@ -236,15 +352,20 @@ const testreal2: CardData = {
   spam: false,
   from: "danlindsay@nucletek.com",
   subject: "Meeting Notes - Going Forward",
+  context: "TBC",
 };
 test.push(testreal2);
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -                                                                       CUE DESCRIPTIONS                                                                                -
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 type ReflectionDescriptions = {
   Good: string;
   Bad: string;
 };
 
-// Derived from Parsons et. al
+// Derived from Parsons et. al amongst other sources
 let reflectionDescriptions: { [id: string]: ReflectionDescriptions } = {};
 reflectionDescriptions["SimilarDomain"] = {
   Good: "Well Done! You identified a similar domain attack!",
@@ -282,7 +403,27 @@ reflectionDescriptions["Nonsense"] = {
 };
 reflectionDescriptions["MaliciousAttachment"] = {
   Good: "Well Done! You identified that the attachment was malicious!",
-  Bad: "Remember to check attachments in an email before downloading them. One inication that an attachment is malicious is that it's file extension is an .exe or .bat file",
+  Bad: "Remember to check attachments in an email before downloading them. One indication that an attachment is malicious is that it's file extension is an .exe or .bat file",
+};
+reflectionDescriptions["UnfamiliarURL"] = {
+  Good: "Well Done! You identified the unfamiliar URL",
+  Bad: "Remember to hover over links to check that they are legitimate and make sense. Links in emails are the easiest way to compromise a victim",
+};
+reflectionDescriptions["UnfamiliarDomain"] = {
+  Good: "Well Done! You identified the unfamiliar domain",
+  Bad: "Remember to check domain names of email addresses. If they do not make sense, or do not seem specific enough, they are more than likely fake",
+};
+reflectionDescriptions["FurtherContact"] = {
+  Good: "Well Done! You identified an attempt to continue phishing on a different means of communication",
+  Bad: "This was an attempt to continue the phishing attempt using a different means of communication. This is often used to add credibility to an email, which might be dangerous for a user if they believe it",
+};
+reflectionDescriptions["Generic"] = {
+  Good: "Well Done! You identified the generic information.",
+  Bad: "Malicious Cyber Actors may use generic language to cast their phishing net wider. If a company emails you, they will generally use lots of information, especially regarding urgent notices",
+};
+reflectionDescriptions["MasqueradingLink"] = {
+  Good: "Well Done! You identified the Masquerading Link.",
+  Bad: "Link text can be changed to look legitimate, however, you can always hover over the link to ensure that it leads to the expected URL.",
 };
 
 export const roundOneEmails = r1;

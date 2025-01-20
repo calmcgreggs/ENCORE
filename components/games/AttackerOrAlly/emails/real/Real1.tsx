@@ -6,9 +6,11 @@ import { useState } from "react";
 export default function Real1({
   from,
   subject,
+  emailNo
 }: {
   from: string;
   subject: string;
+  emailNo : number
 }) {
   const [flagged, setFlagged] = useState(false);
   const user = useUser();
@@ -20,7 +22,7 @@ export default function Real1({
         subject={subject}
         flagged={flagged}
         setFlagged={setFlagged}
-        emailNo={2}
+        emailNo={emailNo}
       />
       <Image
         className="mx-auto"

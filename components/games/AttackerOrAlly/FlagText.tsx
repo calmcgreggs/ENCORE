@@ -4,18 +4,20 @@ import ReflectionModal from "./ReflectionModal";
 
 export default function FlagText({
   text,
-  style,
   flag,
   index,
   emailNo,
   cue,
+  href,
+  link,
 }: {
   text: string;
-  style?: string;
   flag: boolean;
   index: number;
   emailNo: number;
   cue?: CueType;
+  href?: string;
+  link?: boolean;
 }) {
   const {
     roundScores,
@@ -28,24 +30,27 @@ export default function FlagText({
   const [found, setFound] = useState(false);
 
   useEffect(() => {
-    setFound(roundScores[round][emailNo][index]);
-  }, [round, roundScores, emailNo, index]);
+    if (index && round && emailNo && roundScores)
+      setFound(roundScores[round][emailNo][index]);
+  }, [roundScores, emailNo, index]);
 
   return (
     <>
       <ReflectionModal cue={cue} found={found} index={index} />
       <a
         className={
-          (style ? style : "") +
+          (link ? "underline text-blue-500" : "") +
           " text-wrap transition-all ease-in-out duration-500 " +
           (reflection
             ? "underline decoration-wavy " +
               (found ? "decoration-green-700" : "decoration-red-700")
             : found
-            ? "bg-red-700 text-white"
+            ? "!bg-red-700 !text-white"
             : "")
         }
-        onClick={() => {
+        onClick={(e) => {
+          console.log(roundScores);
+          e.preventDefault();
           if (reflection) {
             setReflectionModalOpen(true);
             setCueNo(index);
@@ -74,6 +79,7 @@ export default function FlagText({
             setFound(!found);
           }
         }}
+        href={link ? href : undefined}
         // onMouseOver={() => {
         //   if (reflection) {
         //     setReflectionModalOpen(true);

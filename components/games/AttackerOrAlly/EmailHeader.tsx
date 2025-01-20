@@ -35,13 +35,19 @@ export default function EmailHeader({
 
   //This was an attempt to persist the report mode but no joy yet (this needs to work!)
   useEffect(() => {
-    if (roundScores[round][emailNo!].includes(true)) {
+    if (
+      emailNo &&
+      round &&
+      roundScores &&
+      roundScores[round].length > emailNo &&
+      roundScores[round][emailNo].includes(true)
+    ) {
       setFlagged(true);
     }
-  }, [emailNo, round]);
+  }, [emailNo, round, roundScores]);
 
   return (
-    <div className="">
+    <div className="mb-10">
       {!reflection && (
         <div className="relative">
           <div

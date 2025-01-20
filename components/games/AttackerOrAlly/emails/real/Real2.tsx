@@ -6,9 +6,11 @@ import EmailHeader from "../../EmailHeader";
 export default function Real2({
   from,
   subject,
+  emailNo,
 }: {
   from: string;
   subject: string;
+  emailNo: number;
 }) {
   const [flagged, setFlagged] = useState(false);
   const user = useUser();
@@ -20,7 +22,7 @@ export default function Real2({
         subject={subject}
         flagged={flagged}
         setFlagged={setFlagged}
-        emailNo={3}
+        emailNo={emailNo}
       />
       <Image
         className="mx-auto"
@@ -33,8 +35,8 @@ export default function Real2({
         Hi {user.user?.firstName}, <br /> <br />
         Just sending over our notes from the meeting earlier. <br />
         <br />
-        If you could look at these in the next couple of days and see if there is
-        anything we can do to improve our PLC security that would be great.
+        If you could look at these in the next couple of days and see if there
+        is anything we can do to improve our PLC security that would be great.
         <br />
         <br />
         Cheers,

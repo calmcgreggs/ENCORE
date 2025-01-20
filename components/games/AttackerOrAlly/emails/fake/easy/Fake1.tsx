@@ -1,14 +1,16 @@
 import Image from "next/image";
 import { useState } from "react";
-import EmailHeader from "../../EmailHeader";
-import FlagText from "../../FlagText";
+import EmailHeader from "../../../EmailHeader";
+import FlagText from "../../../FlagText";
 
 export default function Fake1({
   from,
   subject,
+  emailNo,
 }: {
   from: string;
   subject: string;
+  emailNo: number;
 }) {
   const [flagged, setFlagged] = useState(false);
 
@@ -21,7 +23,7 @@ export default function Fake1({
         setFlagged={setFlagged}
         frombad
         subjectbad
-        emailNo={0}
+        emailNo={emailNo}
         iStart={3}
         fromcue="SimilarDomain"
         subjectcue="PositiveConsequences"
@@ -37,7 +39,7 @@ export default function Fake1({
         <FlagText
           text="Hi there,"
           flag={flagged}
-          emailNo={0}
+          emailNo={emailNo}
           index={0}
           cue="ImpersonalGreeting"
         />{" "}
@@ -48,7 +50,7 @@ export default function Fake1({
         <FlagText
           text="£300 British Airways travel voucher has been issued to you"
           flag={flagged}
-          emailNo={0}
+          emailNo={emailNo}
           index={1}
           cue="PositiveConsequences"
         />
@@ -64,9 +66,10 @@ export default function Fake1({
         your British Airways account by logging in here:{" "}
         <FlagText
           text="https://accounts.br1ttishairways.com/flight-credit/login"
-          style="underline text-blue-400"
+          href="https://accounts.br1ttishairways.com/flight-credit/login"
+          link
           flag={flagged}
-          emailNo={0}
+          emailNo={emailNo}
           index={2}
           cue={"SimilarDomain"}
         />

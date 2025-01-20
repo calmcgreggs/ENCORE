@@ -1,13 +1,15 @@
 import { useState } from "react";
-import EmailHeader from "../../EmailHeader";
-import FlagText from "../../FlagText";
+import EmailHeader from "../../../EmailHeader";
+import FlagText from "../../../FlagText";
 
 export default function Fake2({
   from,
   subject,
+  emailNo,
 }: {
   from: string;
   subject: string;
+  emailNo: number;
 }) {
   const [flagged, setFlagged] = useState(false);
 
@@ -20,7 +22,7 @@ export default function Fake2({
         setFlagged={setFlagged}
         frombad
         subjectbad
-        emailNo={1}
+        emailNo={emailNo}
         iStart={4}
         fromcue="SimilarDomain"
         subjectcue="Urgency"
@@ -29,7 +31,7 @@ export default function Fake2({
         <FlagText
           text="Hello user,"
           flag={flagged}
-          emailNo={1}
+          emailNo={emailNo}
           index={0}
           cue={"ImpersonalGreeting"}
         />{" "}
@@ -37,7 +39,7 @@ export default function Fake2({
         <FlagText
           text="In order to protect your system account from fraud "
           flag={flagged}
-          emailNo={1}
+          emailNo={emailNo}
           index={6}
           cue="NegativeConsequences"
         />
@@ -45,7 +47,7 @@ export default function Fake2({
         <br />
         <FlagText
           text="It's important you do this urntly"
-          emailNo={1}
+          emailNo={emailNo}
           flag={flagged}
           index={1}
           cue="SpellingError"
@@ -57,7 +59,7 @@ export default function Fake2({
         <FlagText
           text="download this key as an attachment and install the software on
         "
-          emailNo={1}
+          emailNo={emailNo}
           flag={flagged}
           index={2}
           cue="Nonsense"
@@ -76,7 +78,7 @@ export default function Fake2({
           {" "}
           <FlagText
             text="SecurityKey.exe"
-            emailNo={1}
+            emailNo={emailNo}
             flag={flagged}
             index={3}
             cue="MaliciousAttachment"
