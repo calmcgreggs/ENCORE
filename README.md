@@ -33,6 +33,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - Create React Clones and Add to Game
   - Randomisation of Emails
   - ~~Sort directory structure for organising emails~~
+  - Write and add Written Training Content
 - Data Aggregation Feature
   - ~~Implement Manager Permissions~~
   - ~~Create Manager Dashboard~~

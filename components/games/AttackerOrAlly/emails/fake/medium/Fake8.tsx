@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EmailHeader from "../../../EmailHeader";
 import FlagText from "../../../FlagText";
+import { useUser } from "@clerk/nextjs";
 
 export default function Fake8({
   from,
@@ -12,6 +13,7 @@ export default function Fake8({
   emailNo: number;
 }) {
   const [flagged, setFlagged] = useState(false);
+  const {user} = useUser()
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 static">
@@ -23,61 +25,45 @@ export default function Fake8({
         frombad
         subjectbad
         emailNo={emailNo}
-        iStart={5}
+        iStart={2}
         fromcue="UnfamiliarDomain"
-        subjectcue="Nonsense"
+        subjectcue="Urgency"
       />
       <p className="select-none">
+        Dear {user?.firstName},
+        <br /> <br />
+        You are invited to an exclusive webinar hosted by industry leaders on
+        protecting ICS infrastructure from the latest cybersecurity threats.
+        <br />
+        Topics include:
+        <br /> <br />
+        <ul className="list-disc px-5">
+          <li>Threat mitigation for SCADA systems</li>
+          <li>Real-time monitoring best practices</li>
+          <li>Case studies from recent ICS incidents</li>
+        </ul>
+        <br /> <br />
+        Reserve your spot now {" "}
         <FlagText
           emailNo={emailNo}
           flag={flagged}
           index={0}
-          text="Dear Facility Manager,"
-          cue="ImpersonalGreeting"
-        />
-        <br /> <br />
-        We have identified a{" "}
-        <FlagText
-          emailNo={emailNo}
-          flag={flagged}
-          index={1}
-          text="manufacturing defect in the ICS Controller Model 789"
-          cue="Generic"
-        />
-        that may lead to operational failures under high load conditions. <br />{" "}
-        <br />
-        For safety, all affected units must be replaced immediately. Submit your
-        replacement request here:{"  "}
-        <br /> <br />
-        <FlagText
-          emailNo={emailNo}
-          flag={flagged}
-          index={2}
-          text="https://controller-recall.com/replace789"
+          text="here"
           cue="UnfamiliarURL"
           link
-          href="https://controller-recall.com/replace789"
+          href="https://www.ics-insights-webinar.com/register"
         />
         <br /> <br />
         <FlagText
           emailNo={emailNo}
-          text={"Failure to act promptly  "}
+          text={"Only a limited number of seats are available, so act quickly!"}
           cue="Urgency"
           flag={flagged}
-          index={3}
+          index={1}
         />{" "}
-        may result in{" "}
-        <FlagText
-          emailNo={emailNo}
-          text="unplanned downtime and potential safety risks"
-          index={4}
-          cue="NegativeConsequences"
-          flag={flagged}
-        />
-        .
         <br /> <br />
         Regards, <br /> <br />
-        Recall Notification
+        ICS Insights Team
       </p>
     </div>
   );

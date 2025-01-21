@@ -10,6 +10,8 @@ export default function FlagText({
   cue,
   href,
   link,
+  nonsensegood,
+  nonsensebad,
 }: {
   text: string;
   flag: boolean;
@@ -18,6 +20,8 @@ export default function FlagText({
   cue?: CueType;
   href?: string;
   link?: boolean;
+  nonsensegood?: string;
+  nonsensebad?: string;
 }) {
   const {
     roundScores,
@@ -36,7 +40,13 @@ export default function FlagText({
 
   return (
     <>
-      <ReflectionModal cue={cue} found={found} index={index} />
+      <ReflectionModal
+        cue={cue}
+        found={found}
+        index={index}
+        nonsensebad={nonsensebad}
+        nonsensegood={nonsensegood}
+      />
       <a
         className={
           (link ? "underline text-blue-500" : "") +

@@ -3,15 +3,21 @@ import Fake2 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake2";
 import Fake3 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake3";
 import Fake4 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake4";
 import Fake5 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake5";
+import Fake10 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake10";
 import Fake6 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake6";
 import Fake7 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake7";
+import Fake8 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake8";
+import Fake9 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake9";
 import Real1 from "@/components/games/AttackerOrAlly/emails/real/Real1";
+import Real10 from "@/components/games/AttackerOrAlly/emails/real/Real10";
 import Real2 from "@/components/games/AttackerOrAlly/emails/real/Real2";
 import Real3 from "@/components/games/AttackerOrAlly/emails/real/Real3";
 import Real4 from "@/components/games/AttackerOrAlly/emails/real/Real4";
 import Real5 from "@/components/games/AttackerOrAlly/emails/real/Real5";
 import Real6 from "@/components/games/AttackerOrAlly/emails/real/Real6";
 import Real7 from "@/components/games/AttackerOrAlly/emails/real/Real7";
+import Real8 from "@/components/games/AttackerOrAlly/emails/real/Real8";
+import Real9 from "@/components/games/AttackerOrAlly/emails/real/Real9";
 import TestFake1 from "@/components/games/AttackerOrAlly/emails/test/TestFake1";
 import TestFake2 from "@/components/games/AttackerOrAlly/emails/test/TestFake2";
 import TestReal1 from "@/components/games/AttackerOrAlly/emails/test/TestReal1";
@@ -270,28 +276,122 @@ const fake7: CardData = {
 };
 r2.push(fake7);
 
-//Not finished yet
 const fake8: CardData = {
   card: (
-    <Fake7
-      from="recalls@controllerupdates.net"
-      subject="Urgent Recall: ICS Controller Model 789"
-      emailNo={3}
+    <Fake8
+      from="webinar@ics-securityevents.net"
+      subject="Act Quickly - Invitation: Securing ICS from Emerging Threats in 2025"
+      emailNo={4}
     />
   ),
-  from: "recalls@controllerupdates.net",
-  subject: "Urgent Recall: ICS Controller Model 789",
+  from: "webinar@ics-securityevents.net",
+  subject: "Act Quickly - Securing ICS from Emerging Threats in 2025",
+  spam: true,
+  cues: 4,
+  context: "TBC",
+};
+r2.push(fake8);
+
+const real8: CardData = {
+  card: (
+    <Real8
+      from="inventory@siemens.com"
+      subject="Urgent: Low Stock on S7-1200 Replacement Parts"
+      emailNo={5}
+    />
+  ),
+  from: "inventory@siemens.com",
+  subject: "Urgent: Low Stock on S7-1200 Replacement Parts",
+  spam: false,
+  context: "TBC",
+};
+r2.push(real8);
+
+const real9: CardData = {
+  card: (
+    <Real9
+      from="dansimpson@icslearn.co.uk"
+      subject="Feedback on Recent Training Session at ICS Learn"
+      emailNo={6}
+    />
+  ),
+  from: "dansimpson@icslearn.co.uk",
+  subject: "Feedback on Recent Training Session at ICS Learn",
+  spam: false,
+  context: "TBC",
+};
+r2.push(real9);
+
+const fake9: CardData = {
+  card: (
+    <Fake9
+      from="alerts@network-monitoring-alerts.com"
+      subject="Unauthorized Traffic Detected in ICS Network"
+      emailNo={7}
+    />
+  ),
+  from: "alerts@network-monitoring-alerts.com",
+  subject: "Unauthorized Traffic Detected in ICS Network",
   spam: true,
   cues: 7,
   context: "TBC",
 };
-r2.push(fake8);
+r2.push(fake9);
+
+const fake10: CardData = {
+  card: (
+    <Fake10
+      from="icsfree-trial@softwareoffer.net"
+      subject="Start Your Free Trial for Premium ICS Monitoring Software"
+      emailNo={8}
+    />
+  ),
+  from: "icsfree-trial@softwareoffer.net",
+  subject: "Start Your Free Trial for Premium ICS Monitoring Software",
+  spam: true,
+  cues: 6,
+  context: "TBC",
+};
+r2.push(fake10);
+
+const real10: CardData = {
+  card: (
+    <Real10
+      from="certificates@giac.org"
+      subject="Download your GIAC Cloud Security Essentials Certificate!"
+      emailNo={9}
+    />
+  ),
+  from: "certificates@giac.org",
+  subject: "Download your GIAC Cloud Security Essentials Certificate!",
+  spam: false,
+  context: "TBC",
+};
+r2.push(real10);
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -                                                                       ROUND THREE                                                                                     -
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 var r3: CardData[] = [];
+
+// Microsoft 365 Fake Password Expiry
+// Return to work survey scam
+// HR Violation Policy
+// Zoom Invite
+// Famous Data Breach - Linkedin
+
+// R;
+// S;
+// S;
+// S;
+// S;
+// R;
+// R;
+// R;
+// S;
+// R;
+
 
 const fake11: CardData = {
   card: (

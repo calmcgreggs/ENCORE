@@ -5,10 +5,14 @@ export default function ReflectionModal({
   cue,
   found,
   index,
+  nonsensebad,
+  nonsensegood,
 }: {
   cue?: string;
   found?: boolean;
   index?: number;
+  nonsensegood?: string;
+  nonsensebad?: string;
 }) {
   const { reflection, reflectionModalOpen, setReflectionModalOpen, cueNo } =
     useGameContext();
@@ -27,7 +31,11 @@ export default function ReflectionModal({
     >
       <h1 className="">
         {cue
-          ? found
+          ? nonsensebad && nonsensegood
+            ? found
+              ? nonsensegood
+              : nonsensebad
+            : found
             ? Reflections[cue].Good
             : Reflections[cue].Bad
           : "No Reflection Available"}
