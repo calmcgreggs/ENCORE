@@ -206,8 +206,8 @@ export default function AttackerOrAlly() {
   }, [clicksLeft]);
 
   return round == -1 ? (
-    <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20">
-      <h1 className="text-2xl">Welcome to Attacker or Ally</h1>
+    <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20 text-4xl [&>*]:mb-20">
+      <h1 className="!text-5xl font-bold">Welcome to Attacker or Ally</h1>
       <h1>
         In this game, you will complete three rounds of a phishing training
         game, with each getting progressively harder. Your aim is to identify

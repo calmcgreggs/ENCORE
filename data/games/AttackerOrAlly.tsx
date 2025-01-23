@@ -3,6 +3,9 @@ import Fake2 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake2";
 import Fake3 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake3";
 import Fake4 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake4";
 import Fake5 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake5";
+import Fake11 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake11";
+import Fake12 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake12";
+import Fake13 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake13";
 import Fake10 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake10";
 import Fake6 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake6";
 import Fake7 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake7";
@@ -10,6 +13,10 @@ import Fake8 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake8";
 import Fake9 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake9";
 import Real1 from "@/components/games/AttackerOrAlly/emails/real/Real1";
 import Real10 from "@/components/games/AttackerOrAlly/emails/real/Real10";
+import Real11 from "@/components/games/AttackerOrAlly/emails/real/Real11";
+import Real12 from "@/components/games/AttackerOrAlly/emails/real/Real12";
+import Real13 from "@/components/games/AttackerOrAlly/emails/real/Real13";
+import Real14 from "@/components/games/AttackerOrAlly/emails/real/Real14";
 import Real2 from "@/components/games/AttackerOrAlly/emails/real/Real2";
 import Real3 from "@/components/games/AttackerOrAlly/emails/real/Real3";
 import Real4 from "@/components/games/AttackerOrAlly/emails/real/Real4";
@@ -377,8 +384,8 @@ var r3: CardData[] = [];
 
 // Microsoft 365 Fake Password Expiry
 // Return to work survey scam
-// HR Violation Policy
 // Zoom Invite
+// HR Violation Policy
 // Famous Data Breach - Linkedin
 
 // R;
@@ -392,23 +399,114 @@ var r3: CardData[] = [];
 // S;
 // R;
 
-
-const fake11: CardData = {
+const real11: CardData = {
   card: (
-    <Fake1
-      from="british-airways@alerting-services.com"
-      subject="£300 Voucher for Your Next British Airways Flight"
+    <Real11
+      from="hr@nucletek.com"
+      subject="Central Control Room Shift Changes"
       emailNo={0}
     />
   ),
-  from: "british-airways@alerting-services.com",
-  subject: "3£300 Voucher for Your Next British Airways Flight",
+  from: "hr@nucletek.com",
+  subject: "Central Control Room Shift Changes",
+  spam: false,
+  context: "TBC",
+};
+r3.push(real11);
+
+// Needs flagtext added but trying to get through as many as i can
+const fake11: CardData = {
+  card: (
+    <Fake11
+      from="passwordreset@microsoftemail.com"
+      subject="Unusual sign in activity"
+      emailNo={1}
+    />
+  ),
+  from: "passwordreset@microsoftemail.com",
+  subject: "Unusual sign in activity",
   spam: true,
   cues: 5,
   context: "TBC",
 };
 r3.push(fake11);
 
+const fake12: CardData = {
+  card: (
+    <Fake12
+      from="officereturn@nuckletek.com"
+      subject="Return to office questionnaire"
+      emailNo={2}
+    />
+  ),
+  from: "officereturn@nuckletek.com",
+  subject: "Return to office questionnaire",
+  spam: true,
+  cues: 5,
+  context: "TBC",
+};
+r3.push(fake12);
+
+const fake13: CardData = {
+  card: (
+    <Fake13
+      from="no-reply@zoom.host"
+      subject="Meeting Reminder : Today at 4pm"
+      emailNo={3}
+    />
+  ),
+  from: "no-reply@zoom.host",
+  subject: "Meeting Reminder : Today at 4pm",
+  spam: true,
+  cues: 5,
+  context: "TBC",
+};
+r3.push(fake13);
+
+const real12: CardData = {
+  card: (
+    <Real12
+      from="monitoring@nucletek.com"
+      subject="Unplanned System Downtime Alert"
+      emailNo={4}
+    />
+  ),
+  from: "monitoring@nucletek.com",
+  subject: "Unplanned System Downtime Alert",
+  spam: false,
+  context: "TBC",
+};
+r3.push(real12);
+
+const real13: CardData = {
+  card: (
+    <Real13
+      from="safety@nucletek.com"
+      subject="Upcoming ICS Emergency Response Safety Drill"
+      emailNo={5}
+    />
+  ),
+  from: "safety@nucletek.com",
+  subject: "Upcoming ICS Emergency Response Safety Drill",
+  spam: false,
+  context: "TBC",
+};
+r3.push(real13);
+
+const real14: CardData = {
+  card: (
+    <Real14
+      from="reports@nucletek.com"
+      subject="Monthly ICS System Performance Report - January 2025"
+      emailNo={6}
+    />
+  ),
+  from: "reports@nucletek.com",
+  subject: "Monthly ICS System Performance Report - January 2025",
+  spam: false,
+  context: "TBC",
+};
+r3.push(real14);
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -                                                                       TEST EMAILS                                                                                     -
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------

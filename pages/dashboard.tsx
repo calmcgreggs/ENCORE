@@ -365,6 +365,7 @@ export default function Dashboard() {
                       colour="red"
                       percentage={64}
                     />
+                    <h1>Bar graph here, x axis for rounds, y axises to indicate metric (time and percentage rate), two bars average time taken</h1>
                   </div>
                 </div>
               ) : adminTab == "Cue Breakdown" ? (
