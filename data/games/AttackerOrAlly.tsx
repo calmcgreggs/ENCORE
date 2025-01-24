@@ -6,6 +6,8 @@ import Fake5 from "@/components/games/AttackerOrAlly/emails/fake/easy/Fake5";
 import Fake11 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake11";
 import Fake12 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake12";
 import Fake13 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake13";
+import Fake14 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake14";
+import Fake15 from "@/components/games/AttackerOrAlly/emails/fake/hard/Fake15";
 import Fake10 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake10";
 import Fake6 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake6";
 import Fake7 from "@/components/games/AttackerOrAlly/emails/fake/medium/Fake7";
@@ -17,6 +19,7 @@ import Real11 from "@/components/games/AttackerOrAlly/emails/real/Real11";
 import Real12 from "@/components/games/AttackerOrAlly/emails/real/Real12";
 import Real13 from "@/components/games/AttackerOrAlly/emails/real/Real13";
 import Real14 from "@/components/games/AttackerOrAlly/emails/real/Real14";
+import Real15 from "@/components/games/AttackerOrAlly/emails/real/Real15";
 import Real2 from "@/components/games/AttackerOrAlly/emails/real/Real2";
 import Real3 from "@/components/games/AttackerOrAlly/emails/real/Real3";
 import Real4 from "@/components/games/AttackerOrAlly/emails/real/Real4";
@@ -29,11 +32,6 @@ import TestFake1 from "@/components/games/AttackerOrAlly/emails/test/TestFake1";
 import TestFake2 from "@/components/games/AttackerOrAlly/emails/test/TestFake2";
 import TestReal1 from "@/components/games/AttackerOrAlly/emails/test/TestReal1";
 import TestReal2 from "@/components/games/AttackerOrAlly/emails/test/TestReal2";
-
-//TODO
-// - Everything needs renamed (e.g. const fake13)
-// - Possible tidy up?
-// - Finish emails
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -                                                                       ROUND ONE                                                                                       -
@@ -418,15 +416,15 @@ r3.push(real11);
 const fake11: CardData = {
   card: (
     <Fake11
-      from="passwordreset@microsoftemail.com"
+      from="no-reply@microsoftemail.com"
       subject="Unusual sign in activity"
       emailNo={1}
     />
   ),
-  from: "passwordreset@microsoftemail.com",
+  from: "no-reply@microsoftemail.com",
   subject: "Unusual sign in activity",
   spam: true,
-  cues: 5,
+  cues: 4,
   context: "TBC",
 };
 r3.push(fake11);
@@ -442,7 +440,7 @@ const fake12: CardData = {
   from: "officereturn@nuckletek.com",
   subject: "Return to office questionnaire",
   spam: true,
-  cues: 5,
+  cues: 2,
   context: "TBC",
 };
 r3.push(fake12);
@@ -458,7 +456,7 @@ const fake13: CardData = {
   from: "no-reply@zoom.host",
   subject: "Meeting Reminder : Today at 4pm",
   spam: true,
-  cues: 5,
+  cues: 4,
   context: "TBC",
 };
 r3.push(fake13);
@@ -507,6 +505,53 @@ const real14: CardData = {
   context: "TBC",
 };
 r3.push(real14);
+
+const fake14: CardData = {
+  card: (
+    <Fake14
+      from="hr@nucletek-alerts.com"
+      subject="Violation of HR Policy - Immediate Action Required"
+      emailNo={7}
+    />
+  ),
+  from: "hr@nucletek-alerts.com",
+  subject: "Violation of HR Policy - Immediate Action Required",
+  spam: true,
+  cues: 5,
+  context: "TBC",
+};
+r3.push(fake14);
+
+const real15: CardData = {
+  card: (
+    <Real15
+      from="cyber@nucletek.com"
+      subject="Critical Cyber Threat Guidance"
+      emailNo={8}
+    />
+  ),
+  from: "cyber@nucletek.com",
+  subject: "Critical Cyber Threat Guidance",
+  spam: false,
+  context: "TBC",
+};
+r3.push(real15);
+
+const fake15: CardData = {
+  card: (
+    <Fake15
+      from="notifications@linkedin-updates.com"
+      subject={"You Have 1 New Connection Request!"}
+      emailNo={9}
+    />
+  ),
+  from: "notifications@linkedin-updates.com",
+  subject: "You Have 1 New Connection Request!",
+  spam: true,
+  cues: 5,
+  context: "TBC",
+};
+r3.push(fake15);
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -                                                                       TEST EMAILS                                                                                     -
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -22,7 +22,7 @@ export default function Home() {
             <Link href="/dashboard">
               <button className="btn btn-primary mx-10">Open Dashboard</button>
             </Link>
-            <Link href="/training/Social_Engineering/1">
+            <Link href="/evaluation/Introduction">
               <button className="btn btn-secondary mx-10 ">
                 I&apos;m a participant!
               </button>

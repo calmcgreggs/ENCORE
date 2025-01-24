@@ -60,7 +60,6 @@ export default function FinalTest() {
   useEffect(() => {
     GetPF();
   }, [user]);
-  
 
   useEffect(() => {
     if (
@@ -174,27 +173,21 @@ export default function FinalTest() {
           </div>
         </div>
       ) : (
-        <div className="text-center">
-          <h1 className="font-bold text-5xl text-center mt-10">Game Over!</h1>
+        <div className="text-center mt-20">
+          <h1 className="text-3xl w-1/2 text-center mx-auto font-bold">
+            Congratulations on completing the post-evaluation test. The final
+            part of this evaluation is an anonymous user survey that will be
+            used to gain insights into your opinions of the game and the
+            platform.
+          </h1>
           <h1 className="text-xl mt-10">
             You achieved a score of {correct}/{gameCards.length}
           </h1>
-          <Link href="/dashboard">
-            <button className="btn btn-primary mt-10 mx-10">
-              Back to Dashboard
+          <Link href="/form">
+            <button className="p-5 bg-green-700 rounded-xl hover:bg-green-600">
+              Complete User Form
             </button>
           </Link>
-          <button
-            className="btn btn-secondary mt-10 mx-10"
-            onClick={() => {
-              setGameCards(gameCards.toSorted(() => Math.random() - 0.5));
-              setCardIndex(0);
-              setCorrect(0);
-              setGameOver(false);
-            }}
-          >
-            Retry Game
-          </button>
         </div>
       )}
     </div>

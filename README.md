@@ -24,30 +24,21 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
 ## To-Do List
 
 - Create Game
-  - ~~Create Game Flow~~
-  - ~~Create Game Mechanics~~
-  - ~~Create Reflection Flow + Mechanics~~
-  - ~~Create final page after reflection (or even just a button that shows up taking back to dashboard)~~
-  - ~~Introduce click limit into attacker or ally~~
+  - Disable debug mode
+  - Add to firebase time taken to complete game
+  - Implement Cue tracking for analytics
 - Create Content For Game (Scenario Development)
   - Create React Clones and Add to Game
-  - Randomisation of Emails
-  - ~~Sort directory structure for organising emails~~
-  - Write and add Written Training Content
+  - Finish Written Training Content
+  - Add Context for each email
 - Data Aggregation Feature
-  - ~~Implement Manager Permissions~~
-  - ~~Create Manager Dashboard~~
   - Make Manager Dashboard Dynamic
-  - ~~Tag FlagText elements with type of cue description for data aggregation~~
-  - ~~Aggregate highscore data for user on dashboard~~
+  - Add Leaderboard to user dashboard
 - Evaluation
-  - ~~Create Pre, Mid and Post Tests with randomised data~~
-  - ~~Link up to firebase and make neccessary changes on signup + for current accounts~~
-  - ~~Modify emails for tests so they don't error because of flagtext~~
-  - Create Evaluation Flow (e.g. Pre Test -> Written -> Mid-Evaluation Test -> Game -> Final Test -> Form) (Do this last and put on a separate branch)
-- Stretch Goals
-  - Different Click Colours to denote different cue types (e.g. similar domain etc.)
-  - Create website simulation
+  - Add content to pre, mid and final tests
+  - Finish Evaluation Flow (e.g. Pre Test -> Written -> Mid-Evaluation Test -> Game -> Final Test -> Form) (Do this last and put on a separate branch)
+- Debugging
+  - Bug :
 
 ## Wireframes
 

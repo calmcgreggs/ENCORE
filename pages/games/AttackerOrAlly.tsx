@@ -9,7 +9,6 @@ import useUpdateHighScore from "@/hooks/useUpdateHighScore";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 export default function AttackerOrAlly() {
   const { user } = useUser();
@@ -197,6 +196,11 @@ export default function AttackerOrAlly() {
   useEffect(() => {
     setClicksLeft(15);
     setCurrentEmail(0);
+    if (round == 0 && !reflection) {
+      setIsRunning(true);
+    } else if (round == 3){
+      setIsRunning(false)
+    }
   }, [round]);
 
   useEffect(() => {
@@ -204,6 +208,23 @@ export default function AttackerOrAlly() {
       setRound(round + 1);
     }
   }, [clicksLeft]);
+
+  // Stopwatch stuff
+
+  const [isRunning, setIsRunning] = useState(false);
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    //eslint-disable-next-line
+    let intervalId: any;
+    if (isRunning) {
+      intervalId = setInterval(() => setTime(time + 1), 10);
+    }
+    return () => clearInterval(intervalId);
+  }, [isRunning, time]);
+
+  const minutes = Math.floor((time % 360000) / 6000);
+  const seconds = Math.floor((time % 6000) / 100);
 
   return round == -1 ? (
     <div className="p-5 bg-blue-800 text-center  gap-5 flex flex-col h-[90vh] px-20 text-4xl [&>*]:mb-20">
@@ -233,23 +254,11 @@ export default function AttackerOrAlly() {
         Round {round + 1}{" "}
         {reflection ? "Reflection" : " | Clicks left - " + clicksLeft}
       </h1>
-      <div className="absolute top-2 right-2">
-        {!reflection && (
-          <CountdownCircleTimer
-            isPlaying={reflection ? false : !debug}
-            onComplete={() => {
-              setRound(round + 1);
-              return { shouldRepeat: true, delay: 1.5 };
-            }}
-            size={100}
-            duration={120}
-            colors={["#d41133", "#F7B801", "#A30000", "#A30000"]}
-            colorsTime={[7, 5, 2, 0]}
-          >
-            {({ remainingTime }) => remainingTime}
-          </CountdownCircleTimer>
-        )}
-      </div>
+      <h1 className="absolute top-0 right-0 border-l px-2 border-b">
+        Time Taken - {minutes.toString().padStart(2, "0")} :{" "}
+        {seconds.toString().padStart(2, "0")}
+      </h1>
+
       <div
         id="message-pane"
         className="w-1/4 border-r-2 border-white overflow-y-scroll no-scrollbar "

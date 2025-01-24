@@ -2,35 +2,34 @@ import PageLayout from "@/layouts/pagelayout";
 import Image from "next/image";
 
 export default function SE1() {
+  // What is Social Engineering and Phishing
   return (
     <PageLayout>
       <div className="text-center mt-10 px-10 [&>*]:my-10">
-        <h1>
-          This is Social Engineering Page One. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Pellentesque aliquet pellentesque quam
-          nec mollis. Vestibulum nec elementum odio. Maecenas vitae elit leo.
-          Aenean luctus erat sit amet mi luctus sagittis. Curabitur maximus
-          dapibus ultricies. Cras a eros blandit, tempus est id, faucibus orci.
-          Praesent eget metus elit. Curabitur vel egestas tortor. Quisque non
-          euismod leo. Curabitur sodales fringilla nibh, at cursus lorem
-          porttitor id. Praesent a erat eu nisl pharetra porta nec ut felis.
-          Donec eget facilisis eros, eget gravida ex. Quisque eleifend arcu
-          quam, nec finibus ligula porta non. Cras tristique augue id neque
-          feugiat molestie.
+        <h1 className="text-left font-bold text-2xl">
+          What is Social Engineering and Phishing?
         </h1>
         <h1>
-          Mauris accumsan felis in nisl condimentum fringilla. Integer sit amet
-          quam in enim luctus suscipit gravida vel est. Quisque mollis augue sed
-          ligula luctus, at dignissim est maximus. Suspendisse arcu neque,
-          rutrum eu magna sit amet, viverra mollis massa. Quisque sit amet
-          blandit lectus. Integer vel mauris placerat, euismod felis ac, rhoncus
-          nulla. Pellentesque consectetur efficitur lacinia. Sed pulvinar metus
-          faucibus nunc rhoncus condimentum. Nunc in eros sem. Praesent vel ex
-          sem. Praesent posuere nunc quis eleifend elementum. Cras ullamcorper
-          nisi id diam interdum viverra. Curabitur feugiat feugiat nunc, at
-          feugiat est eleifend nec. Nullam placerat leo a ullamcorper finibus.
-          Pellentesque id sagittis est, eget molestie erat. Nam nec lorem a
-          libero ornare blandit.
+          In a social engineering attack, an attacker uses human interaction
+          (social skills) to obtain or compromise information about an
+          organization or its computer systems. An attacker may seem unassuming
+          and respectable, possibly claiming to be a new employee, repair
+          person, or researcher and even offering credentials to support that
+          identity. However, by asking questions, he or she may be able to piece
+          together enough information to infiltrate an organization&apos;s network.
+          If an attacker is not able to gather enough information from one
+          source, he or she may contact another source within the same
+          organization and rely on the information from the first source to add
+          to his or her credibility.
+        </h1>
+        <h1>
+          Phishing is a form of social engineering. Phishing attacks use email
+          or malicious websites to solicit personal information by posing as a
+          trustworthy organization. For example, an attacker may send email
+          seemingly from a reputable credit card company or financial
+          institution that requests account information, often suggesting that
+          there is a problem. When users respond with the requested information,
+          attackers can use it to gain access to the accounts.
         </h1>
         <Image
           src="/se1.jpg"
@@ -40,13 +39,13 @@ export default function SE1() {
           className="mx-auto"
         />
         <h1>
-          Sed sollicitudin ipsum varius, convallis neque et, posuere quam. In
-          consectetur, sapien eleifend blandit ornare, enim velit pellentesque
-          est, vitae molestie nisl orci ac nibh. Suspendisse egestas interdum
-          odio et aliquam. Nullam nisl odio, gravida vitae sodales et, sagittis
-          vel diam. Donec sagittis egestas tincidunt. Sed eu augue magna. Fusce
-          ac dolor vel justo luctus scelerisque. In dolor sapien, varius vitae
-          quam vel, malesuada cursus nisl.
+          Types of Phishing attack include : Phishing (general messages sent to
+          a variety of victims), Spear-Phishing (personalised messages sent to
+          one victim to compromise them) and Whaling (a subset of phishing
+          attacks targetting those with high-security credentials such as
+          company executives). Phishing attacks can be delivered using many
+          mediums, such as Smishing (phishing using text messages) or Vishing
+          (phishing using telephone calls).
         </h1>
       </div>
     </PageLayout>

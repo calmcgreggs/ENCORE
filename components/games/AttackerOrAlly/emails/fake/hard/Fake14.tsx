@@ -1,7 +1,8 @@
 import { useState } from "react";
 import EmailHeader from "../../../EmailHeader";
 import FlagText from "../../../FlagText";
-
+import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 
 export default function Fake14({
   from,
@@ -13,7 +14,7 @@ export default function Fake14({
   emailNo: number;
 }) {
   const [flagged, setFlagged] = useState(false);
-
+  const { user } = useUser();
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 static [&>p]:mb-10 [&>p]:select-none">
@@ -27,55 +28,71 @@ export default function Fake14({
         emailNo={emailNo}
         iStart={4}
         fromcue="UnfamiliarDomain"
-        subjectcue="PositiveConsequences"
+        subjectcue="Urgency"
       />
+      <Image
+        className="mx-auto"
+        src="/Nucletek.png"
+        alt="Nucletek Logo"
+        width="100"
+        height="100"
+      />
+      <p>Dear {user?.firstName},</p>
       <p>
+        It has come to our attention that there has been a{" "}
+        <strong>potential violation</strong> of Nucletek&apos;s HR policies
+        associated with your recent activity. This may include actions that go
+        against our company code of conduct, confidentiality agreement, or
+        acceptable workplace behavior.
+      </p>
+      <p>
+        As part of our compliance procedures, we require you to complete the{" "}
+        <strong>mandatory acknowledgment form</strong> to confirm your
+        understanding of the reported issue.{" "}
         <FlagText
-          text="Dear Professional,"
-          emailNo={emailNo}
-          flag={flagged}
+          text="Failure to respond within 48 hours"
           index={0}
-          cue="ImpersonalGreeting"
-        />
-      </p>
-      <p>
-        Gain access to the latest in ICS monitoring technology with{" "}
-        <FlagText
-          text=" our premium software—now available for a free trial"
-          index={1}
-          flag={flagged}
-          emailNo={emailNo}
-          cue="PositiveConsequences"
-        />
-        . Our tool provides real-time alerts, improved analytics, and robust
-        security for your industrial systems.
-      </p>
-      <p>
-        Start your free trial today by clicking below: <br /> <br />
-        <FlagText
-          text="Start Free Trial"
-          index={2}
-          flag={flagged}
-          emailNo={emailNo}
-          link
-          href="http://freemonitorics-software.com/start-trial"
-          cue="UnfamiliarURL"
-        />
-      </p>
-      <p>
-        <FlagText
-          text="Hurry! Offer expires soon."
           emailNo={emailNo}
           flag={flagged}
-          index={3}
           cue="Urgency"
         />{" "}
-        No payment details required for trial activation.
+        may result in{" "}
+        <FlagText
+          text="temporary suspension of your
+        company account until further investigation is conducted."
+          emailNo={emailNo}
+          flag={flagged}
+          index={1}
+          cue="NegativeConsequences"
+        />
       </p>
       <p>
-        Best Regards,
+        Click the link below to review the policy details and submit your
+        acknowledgment:
         <br />
-        ICS Monitoring Team
+        <br />
+        <a
+          href="http://hr-policy-update.nucletek.com"
+          style={{ color: "#337ab7", textDecoration: "underline" }}
+        >
+          Review and Submit Acknowledgment
+        </a>
+      </p>
+      <p>
+        If you believe this notification has been sent in error, please contact
+        HR immediately at{" "}
+        <a
+          href="mailto:support@nucletek.com"
+          style={{ color: "#337ab7", textDecoration: "underline" }}
+        >
+          support@nucletek.com (This is to be a fake link)
+        </a>
+        .
+      </p>
+      <p>
+        Thank you for your prompt attention to this matter.
+        <br />
+        <strong>Nucletek HR Compliance Team</strong>
       </p>
     </div>
   );

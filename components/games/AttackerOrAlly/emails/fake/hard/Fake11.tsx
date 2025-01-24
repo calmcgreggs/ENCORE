@@ -2,6 +2,7 @@ import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState } from "react";
 import EmailHeader from "../../../EmailHeader";
+import FlagText from "../../../FlagText";
 
 export default function Fake11({
   from,
@@ -16,7 +17,7 @@ export default function Fake11({
   const { user } = useUser();
 
   return (
-    <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 static [&>p]:mb-5 [&>p]:select-none">
+    <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 static [&>p]:mb-5">
       <EmailHeader
         from={from}
         subject={subject}
@@ -25,7 +26,7 @@ export default function Fake11({
         frombad
         subjectbad
         emailNo={emailNo}
-        iStart={4}
+        iStart={2}
         fromcue="UnfamiliarDomain"
         subjectcue="PositiveConsequences"
       />
@@ -41,8 +42,15 @@ export default function Fake11({
       <p>
         Hello {user?.firstName}, <br />
         <br />
-        We&apos;ve detected unusual activity on your Microsoft account. To ensure the
-        security of your account, please reset your password immediately.
+        We&apos;ve detected unusual activity on your Microsoft account.
+        <FlagText
+          text="To ensure the
+        security of your account, please reset your password immediately."
+          emailNo={emailNo}
+          flag={flagged}
+          index={0}
+          cue="Urgency"
+        />
       </p>
       <p>
         <strong>Details:</strong>
@@ -55,12 +63,16 @@ export default function Fake11({
         To secure your account, click the link below and follow the instructions
         to reset your password:
       </p>
-      <a
-        href="#"
-        className="inline-block bg-[#0078D4] text-white py-2 rounded-xl text-center mb-10 w-1/4"
-      >
-        Reset Password
-      </a>
+      <button className="inline-block bg-[#0078D4] text-white py-2 rounded-xl text-center mb-10 w-1/4">
+        <FlagText
+          text="Reset Password"
+          emailNo={emailNo}
+          flag={flagged}
+          index={1}
+          cue="MasqueradingLink"
+          href="https://microsoftemail.com/resetpassword"
+        />
+      </button>
       <p>
         If you did not request this, please contact our support team at
         passwordreset@microsoftemail.com.

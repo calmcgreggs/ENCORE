@@ -89,7 +89,7 @@ export default function FlagText({
             setFound(!found);
           }
         }}
-        href={link ? href : undefined}
+        href={href ? href : undefined}
         // onMouseOver={() => {
         //   if (reflection) {
         //     setReflectionModalOpen(true);

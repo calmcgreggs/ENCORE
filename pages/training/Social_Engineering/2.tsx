@@ -1,70 +1,70 @@
 import PageLayout from "@/layouts/pagelayout";
 
 export default function SE2() {
+  // Commonly Used Phishing Tactics
+  // This needs to be finished
   return (
     <PageLayout>
       <div className="text-center mt-10 px-10 [&>*]:my-10">
-        <h1>
-          This is Social Engineering Page Two. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Pellentesque aliquet pellentesque quam
-          nec mollis. Vestibulum nec elementum odio. Maecenas vitae elit leo.
-          Aenean luctus erat sit amet mi luctus sagittis. Curabitur maximus
-          dapibus ultricies. Cras a eros blandit, tempus est id, faucibus orci.
-          Praesent eget metus elit. Curabitur vel egestas tortor. Quisque non
-          euismod leo. Curabitur sodales fringilla nibh, at cursus lorem
-          porttitor id. Praesent a erat eu nisl pharetra porta nec ut felis.
-          Donec eget facilisis eros, eget gravida ex. Quisque eleifend arcu
-          quam, nec finibus ligula porta non. Cras tristique augue id neque
-          feugiat molestie.
+        <h1 className="text-2xl font-bold text-left">
+          The anatomy of an email and it&apos;s vulnerabilities
         </h1>
         <h1>
-          Mauris accumsan felis in nisl condimentum fringilla. Integer sit amet
-          quam in enim luctus suscipit gravida vel est. Quisque mollis augue sed
-          ligula luctus, at dignissim est maximus. Suspendisse arcu neque,
-          rutrum eu magna sit amet, viverra mollis massa. Quisque sit amet
-          blandit lectus. Integer vel mauris placerat, euismod felis ac, rhoncus
-          nulla. Pellentesque consectetur efficitur lacinia. Sed pulvinar metus
-          faucibus nunc rhoncus condimentum. Nunc in eros sem. Praesent vel ex
-          sem. Praesent posuere nunc quis eleifend elementum. Cras ullamcorper
-          nisi id diam interdum viverra. Curabitur feugiat feugiat nunc, at
-          feugiat est eleifend nec. Nullam placerat leo a ullamcorper finibus.
-          Pellentesque id sagittis est, eget molestie erat. Nam nec lorem a
-          libero ornare blandit.
+          This training will focus on phishing emails as this is the most likely
+          social engineering attack you will encounter in your day-to-day
+          worklife. Phishing emails use different techniques to impersonate
+          another, or trick a user into believing the email to be genuine. These
+          often leave behind &apos;cues&apos;, which allow a user to spot
+          mistakes that may indicate that an email is not genuine.
         </h1>
-        <h1>
-          Nam laoreet velit non ipsum venenatis, id eleifend nisl vestibulum.
-          Phasellus ut tortor eleifend, ultrices tellus quis, rutrum felis.
-          Nulla dignissim dictum magna, vitae viverra ex pulvinar sit amet.
-          Phasellus sit amet lacus leo. Ut magna eros, accumsan quis ipsum sit
-          amet, interdum sollicitudin arcu. Aliquam sed pharetra tortor, eu
-          aliquet dui. Maecenas quis mi et lorem eleifend bibendum varius ac
-          erat. Maecenas lacinia orci vitae justo viverra tempor. Vestibulum
-          porttitor, justo et vehicula imperdiet, nisl metus dictum mi, ut
-          ornare eros augue eget nisl. Sed pellentesque viverra ornare. Etiam
-          accumsan mi quis sapien scelerisque, eu faucibus velit cursus. Sed
-          pellentesque, felis et scelerisque commodo, velit justo dictum neque,
-          vitae porta dolor libero in lacus. Phasellus mollis tortor in varius
-          dapibus.
-        </h1>
-        <h1>
-          Sed sollicitudin ipsum varius, convallis neque et, posuere quam. In
-          consectetur, sapien eleifend blandit ornare, enim velit pellentesque
-          est, vitae molestie nisl orci ac nibh. Suspendisse egestas interdum
-          odio et aliquam. Nullam nisl odio, gravida vitae sodales et, sagittis
-          vel diam. Donec sagittis egestas tincidunt. Sed eu augue magna. Fusce
-          ac dolor vel justo luctus scelerisque. In dolor sapien, varius vitae
-          quam vel, malesuada cursus nisl.
-        </h1>
-        <h1>
-          Curabitur viverra vel lacus a ultricies. In quis semper ex, ut
-          malesuada nisl. Sed pharetra viverra odio, id posuere metus bibendum
-          vitae. Aliquam tempor urna a elit congue hendrerit. Integer ac rhoncus
-          erat. Sed ut lectus posuere tortor tincidunt lacinia. In hac habitasse
-          platea dictumst. Proin fringilla mi at augue dictum pharetra. Duis
-          ultrices maximus velit, a sollicitudin risus tristique eget. Nam nunc
-          tortor, imperdiet efficitur maximus a, egestas nec elit. Proin nec
-          varius dolor.
-        </h1>
+        <div className="flex flex-row [&>*]:w-1/3 [&>*]:mx-5">
+          <div className="border-r-2 pr-10">
+            <h1 className="text-xl font-bold underline-offset-2 underline mb-5">
+              Email Address
+            </h1>
+            <h1>
+              Urgency is used to give tight deadlines to email recipients to
+              create a sense of urgency that distracts them from the rest of the
+              message and pressures them into acting quickly. For example, you
+              may recieve an email telling you that your computer may have a
+              virus, or that you have broken a company policy and may be at risk
+              of being fired. In these situations, take a moment, verify the
+              email, and then act.
+            </h1>
+          </div>
+          <div className="border-r-2 pr-10">
+            <h1 className="text-xl font-bold underline-offset-2 underline mb-5">
+              Subject
+            </h1>
+            <h1>
+              Authority is used to convince readers that the message comes from
+              a trustworthy source. Examples of this could be pretending to be a
+              senior executive, a trusted colleague or a reliable company. MCAs
+              may use &apos;similar domain attacks&apos; by sending emails from
+              a domain that appear similar to the user. For example, if you work
+              at &apos;nucletek.com&apos;, a worker may have the email address
+              &apos;[name]@nucletek.com&apos; and scammers may use a similar
+              domain to send authoritative emails from, such as
+              &apos;hr@nucletek-team.com&apos;. Always ensure that the domain of
+              a sender is legitimate
+            </h1>
+          </div>
+          <div>
+            <h1 className="text-xl font-bold underline-offset-2 underline mb-5">
+              Body
+            </h1>
+            <h1>
+              Imitation is used to exploit normal business communications,
+              processes and daily habits to trick a reader into reacting to a
+              message. MCAs may use &apos;similar domain attacks&apos; by
+              sending emails from a domain that appear similar to the user, such
+              as &apos;facebook-team.com&apos; instead of the genuine
+              &apos;facebook.com&apos;. You can avoid these attacks by always
+              checking the sender name and email address, and verifying that it
+              comes from the legimate company.
+            </h1>
+          </div>
+        </div>
       </div>
     </PageLayout>
   );

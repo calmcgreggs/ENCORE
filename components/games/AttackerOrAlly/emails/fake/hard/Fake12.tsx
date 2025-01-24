@@ -2,6 +2,7 @@ import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState } from "react";
 import EmailHeader from "../../../EmailHeader";
+import FlagText from "../../../FlagText";
 
 export default function Fake12({
   from,
@@ -23,11 +24,9 @@ export default function Fake12({
         flagged={flagged}
         setFlagged={setFlagged}
         frombad
-        subjectbad
         emailNo={emailNo}
-        iStart={4}
+        iStart={1}
         fromcue="UnfamiliarDomain"
-        subjectcue="PositiveConsequences"
       />
       <div className="relative [&>p]:mb-5 [&>p]:select-none pt-16">
         <Image
@@ -48,12 +47,16 @@ export default function Fake12({
           environment for all employees. Click the link below to access the
           feedback form:
         </p>
-        <a
-          href="#"
-          className="inline-block bg-green-700 text-white px-2 py-4 rounded-xl mb-5 text-center w-1/4"
-        >
-          Provide Feedback
-        </a>
+        <button className="inline-block bg-green-700 text-white px-2 py-4 rounded-xl mb-5 text-center w-1/4">
+          <FlagText
+            text="Provide Feedback"
+            emailNo={emailNo}
+            flag={flagged}
+            index={0}
+            href="https://nuckletek.com/feedback"
+            cue="MasqueradingLink"
+          />
+        </button>
         <p>
           The survey will take approximately 5 minutes to complete. Thank you
           for your time and cooperation.
