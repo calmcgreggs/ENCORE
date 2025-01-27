@@ -71,22 +71,28 @@ export default function Fake14({
         acknowledgment:
         <br />
         <br />
-        <a
-          href="http://hr-policy-update.nucletek.com"
-          style={{ color: "#337ab7", textDecoration: "underline" }}
-        >
-          Review and Submit Acknowledgment
-        </a>
+        <FlagText
+          flag={flagged}
+          emailNo={emailNo}
+          index={2}
+          text="Review and Submit Acknowledgment"
+          href="https://nucletek-alerts.com/HRViolation"
+          cue="UnfamiliarDomain"
+          link
+        />
       </p>
       <p>
         If you believe this notification has been sent in error, please contact
         HR immediately at{" "}
-        <a
-          href="mailto:support@nucletek.com"
-          style={{ color: "#337ab7", textDecoration: "underline" }}
-        >
-          support@nucletek.com (This is to be a fake link)
-        </a>
+        <FlagText
+          flag={flagged}
+          emailNo={emailNo}
+          index={3}
+          text="support@nucletek.com"
+          cue="MasqueradingLink"
+          href="mailto:support@nucletek-alerts.com"
+          link
+        />
         .
       </p>
       <p>

@@ -517,7 +517,7 @@ const fake14: CardData = {
   from: "hr@nucletek-alerts.com",
   subject: "Violation of HR Policy - Immediate Action Required",
   spam: true,
-  cues: 5,
+  cues: 6,
   context: "TBC",
 };
 r3.push(fake14);
@@ -548,7 +548,7 @@ const fake15: CardData = {
   from: "notifications@linkedin-updates.com",
   subject: "You Have 1 New Connection Request!",
   spam: true,
-  cues: 5,
+  cues: 2,
   context: "TBC",
 };
 r3.push(fake15);

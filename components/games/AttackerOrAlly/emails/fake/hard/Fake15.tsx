@@ -2,6 +2,7 @@ import { useState } from "react";
 import EmailHeader from "../../../EmailHeader";
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
+import FlagText from "../../../FlagText";
 
 export default function Fake15({
   from,
@@ -23,11 +24,9 @@ export default function Fake15({
         flagged={flagged}
         setFlagged={setFlagged}
         frombad
-        subjectbad
         emailNo={emailNo}
-        iStart={4}
-        fromcue="UnfamiliarDomain"
-        subjectcue="PositiveConsequences"
+        iStart={1}
+        fromcue="SimilarDomain"
       />
       <div style={{ textAlign: "center", marginBottom: "10px" }}>
         <Image
@@ -49,21 +48,20 @@ export default function Fake15({
         LinkedIn. Connect with John and expand your professional network to stay
         updated with the latest opportunities.
       </p>
-      <div style={{ textAlign: "center", margin: "20px 0" }}>
-        <a
-          href="http://linkedin-connection-verify.com/connect"
-          style={{
-            display: "inline-block",
-            padding: "10px 20px",
-            backgroundColor: "#0073b1",
-            color: "#ffffff",
-            textDecoration: "none",
-            borderRadius: "5px",
-            fontSize: "16px",
-          }}
-        >
-          Accept Request
-        </a>
+      <div
+        style={{ textAlign: "center", margin: "0px 0" }}
+        className="mb-5 pb-5"
+      >
+        <button className="bg-blue-600 p-5 text-white rounded-xl ">
+          <FlagText
+            emailNo={emailNo}
+            flag={flagged}
+            text="Accept Request"
+            href="https://linkedin-updates.com/login"
+            index={0}
+            cue="MasqueradingLink"
+          />
+        </button>
       </div>
       <p style={{ fontSize: "16px", color: "#333333" }}>
         Thank you for being part of the LinkedIn community.

@@ -28,7 +28,6 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - Add to firebase time taken to complete game
   - Implement Cue tracking for analytics
 - Create Content For Game (Scenario Development)
-  - Create React Clones and Add to Game
   - Finish Written Training Content
   - Add Context for each email
 - Data Aggregation Feature
@@ -38,7 +37,7 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
   - Add content to pre, mid and final tests
   - Finish Evaluation Flow (e.g. Pre Test -> Written -> Mid-Evaluation Test -> Game -> Final Test -> Form) (Do this last and put on a separate branch)
 - Debugging
-  - Bug :
+  - Subject Bad and From Bad, this isn't dynamic indexing and might be wrong for subject if from is not bad (EmailHeader.tsx)
 
 ## Wireframes
 
