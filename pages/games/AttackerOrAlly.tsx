@@ -102,12 +102,14 @@ export default function AttackerOrAlly() {
   function WrapUpdateHighscore(highscoreAsPercentage: number) {
     useUpdateHighScore(
       highscoreAsPercentage,
+      Math.floor(time / 100),
       user!.primaryEmailAddress!.toString()
     );
   }
 
   useEffect(() => {
     if (round == 3) {
+      console.log(userProfile?.Highscore);
       const results = calculateAllRoundsTotalPoints();
       const highscoreAsPercentage = Math.round((results[0] / results[1]) * 100);
       if (
@@ -146,14 +148,6 @@ export default function AttackerOrAlly() {
     }
     return [total, of];
   }
-  // Debugging Print Outs
-  // useEffect(() => {
-  //   console.log(roundScores);
-  // }, [roundScores]);
-
-  // useEffect(() => {
-  //   console.log(round);
-  // }, [round]);
 
   //Create blank arrays of cues per email for reflection and score tracking (just round 1 at the moment)
   useEffect(() => {
@@ -198,8 +192,8 @@ export default function AttackerOrAlly() {
     setCurrentEmail(0);
     if (round == 0 && !reflection) {
       setIsRunning(true);
-    } else if (round == 3){
-      setIsRunning(false)
+    } else if (round == 3) {
+      setIsRunning(false);
     }
   }, [round]);
 

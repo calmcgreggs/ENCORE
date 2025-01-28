@@ -7,8 +7,8 @@ import {
   getFirestore,
 } from "firebase/firestore";
 
-export default async function useGetAllUserProfiles() {
-  let userprofiles: UserProfile[] = [];
+export default async function useGetAllGameData() {
+  let gameresults: Game_Result[] = [];
 
   const firebaseConfig = {
     apiKey: "AIzaSyD5kJ1uPo6EJwpaUYUt_5hXbnylwV7UkHY",
@@ -24,22 +24,17 @@ export default async function useGetAllUserProfiles() {
   const db = getFirestore(app);
 
   if (db) {
-    const querySnapshot = await getDocs(collection(db, "users"));
+    const querySnapshot = await getDocs(collection(db, "game_results"));
     querySnapshot.forEach((userDoc) => {
       const data = userDoc.data();
-      if (data) {
-        userprofiles.push({
-          UID: data["UID"],
-          Initial_Score: data["Initial_Score"],
-          Final_Score: data["Final_Score"],
-          Progress: data["Progress"],
-          Highscore: data["Highscore"],
-          Mid_Score: data["Mid_Score"],
-          FastestTime: data["FastestTime"],
+      if (data && data["GameTime"] != -1) {
+        gameresults.push({
+          ID: userDoc.id,
+          GameTime: data["GameTime"],
         });
       }
     });
   }
 
-  return userprofiles;
+  return gameresults;
 }

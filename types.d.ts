@@ -5,6 +5,12 @@ interface UserProfile {
   Progress: number;
   Highscore: number;
   Mid_Score: number;
+  FastestTime: number;
+}
+
+interface Game_Result {
+  ID: string;
+  GameTime: number;
 }
 
 interface Course {

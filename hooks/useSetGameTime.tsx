@@ -1,9 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
 
-export default async function useUpdateHighScore(
-  highscore: number,
-  gametime : number,
+export default async function useSetGameTime(
+  GameTime: number,
   email: string
 ) {
   const firebaseConfig = {
@@ -20,9 +19,8 @@ export default async function useUpdateHighScore(
   const db = getFirestore(app);
 
   if (db && email) {
-    await updateDoc(doc(db, "users", email), {
-      FastestTime : gametime,
-      Highscore: highscore,
+    await updateDoc(doc(db, "game_results", email), {
+      FastestTime: GameTime,
     });
   }
   return null;

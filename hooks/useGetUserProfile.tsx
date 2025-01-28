@@ -28,6 +28,7 @@ export default async function useGetUserProfile(email: string) {
         Progress: data["Progress"],
         Highscore: data["Highscore"],
         Mid_Score: data["Mid_Score"],
+        FastestTime: data["FastestTime"],
       };
     }
   }

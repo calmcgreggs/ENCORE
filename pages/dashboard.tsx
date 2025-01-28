@@ -19,6 +19,7 @@ export default function Dashboard() {
   const { user, isLoaded } = useUser();
   const [adminView, setAdminView] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  // const [gameResults, setGameResults] = useState<Game_Result[]>();
 
   // TODO: This does need fixed at some point
   async function GetPF() {
@@ -31,11 +32,34 @@ export default function Dashboard() {
     }
   }
 
+  function sortMax(a: UserProfile, b: UserProfile) {
+    if (a.Highscore < b.Highscore) {
+      return 1;
+    } else if (a.Highscore > b.Highscore) {
+      return -1;
+    } else {
+      if (a.FastestTime < b.FastestTime) {
+        return -1;
+      } else if (a.FastestTime > b.FastestTime) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
+
   function GetPFs() {
     useGetAllUserProfiles().then((ups) => {
-      setUserProfiles(ups);
+      const sorted = ups.sort(sortMax);
+      setUserProfiles(sorted);
     });
   }
+
+  // function GetGRs() {
+  //   useGetAllGameData().then((grs) => {
+  //     setGameResults(grs);
+  //   });
+  // }
 
   // async function SetPF(field: string, data: any) {
   //   if (user?.primaryEmailAddress?.toString() && userProfile) {
@@ -64,6 +88,10 @@ export default function Dashboard() {
       );
     }
   }
+
+  // useEffect(() => {
+  //   GetGRs();
+  // }, []);
 
   const [loading, setLoading] = useState(true);
 
@@ -173,24 +201,39 @@ export default function Dashboard() {
             ) : tab == "Highscores" ? (
               <div className="grid grid-rows-1 bg-transparent xl:mx-5 rounded-xl [&>*]:text-center xl:p-5 text-xs xl:text-base transition-all duration-1000 ease-in-out border-black">
                 <div className="text-white grid grid-cols-3 p-5 border-gray-400 border-b-4 [&>*]:my-auto font-bold lg:text-xl">
-                  <h1 className="font-bold">Game</h1>
+                  <h1 className="font-bold">User ID</h1>
+                  <h1>Time Taken</h1>
                   <h1>Highscore</h1>
-                  <h1>Action</h1>
                 </div>
 
-                <div className="text-white grid grid-cols-3 p-5 border-white border-b-2 [&>*]:my-auto">
-                  <h1 className="font-bold">Attacker or Ally</h1>
-                  <h1>
-                    {userProfile?.Highscore != -1
-                      ? userProfile?.Highscore + "%"
-                      : "Not Completed Yet"}
-                  </h1>
-                  <Link href="/games/AttackerOrAlly">
-                    <button className="bg-green-700 xl:w-1/3 mx-auto text-white hover:text-gray-300 p-5">
-                      {userProfile?.Highscore != -1 ? "Replay" : "Play"}
-                    </button>
-                  </Link>
-                </div>
+                {userProfiles?.map((each, i) => {
+                  if (
+                    each.Highscore != -1 &&
+                    each.FastestTime != -1 &&
+                    each.FastestTime
+                  )
+                    return (
+                      <div
+                        className="text-white grid grid-cols-3 p-5 border-white border-b-2 [&>*]:my-auto"
+                        key={i}
+                      >
+                        <h1 className="font-bold border-r-2">
+                          {user?.primaryEmailAddress &&
+                          each.UID == user?.primaryEmailAddress.toString()
+                            ? "You"
+                            : (i + 1).toString()}
+                        </h1>
+                        <h1 className="border-r-2">
+                          {Math.floor(each.FastestTime / 60)} mins{" "}
+                          {Math.floor(each.FastestTime % 60)
+                            .toString()
+                            .padStart(2, "0")}{" "}
+                          seconds
+                        </h1>
+                        <h1>{each.Highscore}%</h1>
+                      </div>
+                    );
+                })}
               </div>
             ) : (
               <div className="grid grid-cols-3 w-11/12 mx-auto   [&>*]:p-5 rounded-xl text-white transition-all duration-1000 ease-in-out [&>*]:border-t-2 [&>*]:border-b-2 ">
@@ -365,7 +408,11 @@ export default function Dashboard() {
                       colour="red"
                       percentage={64}
                     />
-                    <h1>Bar graph here, x axis for rounds, y axises to indicate metric (time and percentage rate), two bars average time taken</h1>
+                    <h1>
+                      Bar graph here, x axis for rounds, y axises to indicate
+                      metric (time and percentage rate), two bars average time
+                      taken
+                    </h1>
                   </div>
                 </div>
               ) : adminTab == "Cue Breakdown" ? (

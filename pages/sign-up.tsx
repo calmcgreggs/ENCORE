@@ -26,7 +26,7 @@ export default function SignUp() {
   }, [user?.primaryEmailAddress]);
 
   async function createUserInFirebase() {
-    if (user?.primaryEmailAddress)
+    if (user?.primaryEmailAddress) {
       await setDoc(doc(db, "users", user.primaryEmailAddress.toString()), {
         Final_Score: -1,
         Highscore: -1,
@@ -34,13 +34,23 @@ export default function SignUp() {
         Progress: 0,
         UID: user.primaryEmailAddress.toString(),
         Mid_Score: -1,
-      })
+        FastestTime: -1,
+      });
+
+      await setDoc(
+        doc(db, "game_results", user.primaryEmailAddress.toString()),
+        {
+          GameTime: -1,
+          Score: -1,
+        }
+      )
         .then(() => {
           router.push("/dashboard");
         })
         .catch(() => {
           router.push("/");
         });
+    }
   }
 
   return (

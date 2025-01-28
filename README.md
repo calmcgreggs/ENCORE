@@ -25,19 +25,18 @@ ENCORE can also be accessed through the live deployment, hosted at https://encor
 
 - Create Game
   - Disable debug mode
-  - Add to firebase time taken to complete game
   - Implement Cue tracking for analytics
 - Create Content For Game (Scenario Development)
   - Finish Written Training Content
   - Add Context for each email
 - Data Aggregation Feature
-  - Make Manager Dashboard Dynamic
-  - Add Leaderboard to user dashboard
+  - Finish making Manager Dashboard dynamic
 - Evaluation
   - Add content to pre, mid and final tests
   - Finish Evaluation Flow (e.g. Pre Test -> Written -> Mid-Evaluation Test -> Game -> Final Test -> Form) (Do this last and put on a separate branch)
 - Debugging
   - Subject Bad and From Bad, this isn't dynamic indexing and might be wrong for subject if from is not bad (EmailHeader.tsx)
+  - Names in emails, if user account doesn't have one, might need to create a name form at start to increase legitimacy of emails etc
 
 ## Wireframes
 
