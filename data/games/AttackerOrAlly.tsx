@@ -231,7 +231,8 @@ const fake6: CardData = {
   subject: "Firmware Update for PLC Model X300",
   spam: true,
   cues: 6,
-  context: "TBC",
+  context:
+    "You recieve this email and check your stock inventory, however you realise that you do not use an PLCs with a model X300...",
 };
 r2.push(fake6);
 
@@ -246,7 +247,8 @@ const real6: CardData = {
   from: "operations@scottishwater.co.uk",
   subject: "Weekly Report: Control System Performance Metrics",
   spam: false,
-  context: "TBC",
+  context:
+    "Your team works closely with Scottish Water to monitor control system performance metrics...",
 };
 r2.push(real6);
 
@@ -261,7 +263,8 @@ const real7: CardData = {
   from: "monitoring@nucletek.com",
   subject: "Notification: Threshold Breach in Pressure Systems",
   spam: false,
-  context: "TBC",
+  context:
+    "Nucletek, your company, has been having trouble with Zone 5's pressure system recently...",
 };
 r2.push(real7);
 
@@ -277,7 +280,8 @@ const fake7: CardData = {
   subject: "Urgent Recall: ICS Controller Model 789",
   spam: true,
   cues: 7,
-  context: "TBC",
+  context:
+    "Upon recieving this email, you check your company's inventory and realise that you have never heard of an ICS controller 789...",
 };
 r2.push(fake7);
 
@@ -293,7 +297,8 @@ const fake8: CardData = {
   subject: "Act Quickly - Securing ICS from Emerging Threats in 2025",
   spam: true,
   cues: 4,
-  context: "TBC",
+  context:
+    "You recently attended an ICS cybersecurity seminar, however, you have never heard of the company that this email comes from...",
 };
 r2.push(fake8);
 
@@ -308,7 +313,8 @@ const real8: CardData = {
   from: "inventory@siemens.com",
   subject: "Urgent: Low Stock on S7-1200 Replacement Parts",
   spam: false,
-  context: "TBC",
+  context:
+    "Your company uses Siemens Simatic S7-1200 PLCs to control key areas of your workplace. The last time you replaced these parts was roughly five years ago...",
 };
 r2.push(real8);
 
@@ -323,7 +329,8 @@ const real9: CardData = {
   from: "dansimpson@icslearn.co.uk",
   subject: "Feedback on Recent Training Session at ICS Learn",
   spam: false,
-  context: "TBC",
+  context:
+    "You recently attended a training session hosted by ICS Learn and the instructor indicated that they would be asking for feedback...",
 };
 r2.push(real9);
 
@@ -339,7 +346,8 @@ const fake9: CardData = {
   subject: "Unauthorized Traffic Detected in ICS Network",
   spam: true,
   cues: 7,
-  context: "TBC",
+  context:
+    "You recieve regular emails alerting you about potential network vulnerabilities, however this does not look the same as the rest...",
 };
 r2.push(fake9);
 
@@ -355,7 +363,8 @@ const fake10: CardData = {
   subject: "Start Your Free Trial for Premium ICS Monitoring Software",
   spam: true,
   cues: 6,
-  context: "TBC",
+  context:
+    "Your company already uses ICS monitoring software, but this looks like a good deal...",
 };
 r2.push(fake10);
 
@@ -370,7 +379,8 @@ const real10: CardData = {
   from: "certificates@giac.org",
   subject: "Download your GIAC Cloud Security Essentials Certificate!",
   spam: false,
-  context: "TBC",
+  context:
+    "You recently completed the GIAC Cloud Security Essentials training and your instructor told you that you'd recieve a certificate soon...",
 };
 r2.push(real10);
 
@@ -408,7 +418,8 @@ const real11: CardData = {
   from: "hr@nucletek.com",
   subject: "Central Control Room Shift Changes",
   spam: false,
-  context: "TBC",
+  context:
+    "Your manager told you that some shift changes may be coming into effect at the weekly stand-up meeting...",
 };
 r3.push(real11);
 
@@ -424,8 +435,9 @@ const fake11: CardData = {
   from: "no-reply@microsoftemail.com",
   subject: "Unusual sign in activity",
   spam: true,
-  cues: 4,
-  context: "TBC",
+  cues: 5,
+  context:
+    "Microsoft recently suffered a large data breach and advised all users to change their passwords...",
 };
 r3.push(fake11);
 
@@ -440,8 +452,9 @@ const fake12: CardData = {
   from: "officereturn@nuckletek.com",
   subject: "Return to office questionnaire",
   spam: true,
-  cues: 2,
-  context: "TBC",
+  cues: 3,
+  context:
+    "After the COVID pandemic, Nucletek, the company your work for, announced in a press conference that all employees will be returning to work...",
 };
 r3.push(fake12);
 
@@ -457,7 +470,8 @@ const fake13: CardData = {
   subject: "Meeting Reminder : Today at 4pm",
   spam: true,
   cues: 4,
-  context: "TBC",
+  context:
+    "After a press conference where the CEO of Nucletek announced their quarterly earnings, you have recieved this zoom invite...",
 };
 r3.push(fake13);
 
@@ -472,7 +486,8 @@ const real12: CardData = {
   from: "monitoring@nucletek.com",
   subject: "Unplanned System Downtime Alert",
   spam: false,
-  context: "TBC",
+  context:
+    "The Data Logging platform has been experiencing some downtime lately, this doesn't seem too out of the ordinary, right?",
 };
 r3.push(real12);
 
@@ -487,7 +502,8 @@ const real13: CardData = {
   from: "safety@nucletek.com",
   subject: "Upcoming ICS Emergency Response Safety Drill",
   spam: false,
-  context: "TBC",
+  context:
+    "Nucletek conducts a monthly emergency response safety drill and gives prior notice to users...",
 };
 r3.push(real13);
 
@@ -502,7 +518,8 @@ const real14: CardData = {
   from: "reports@nucletek.com",
   subject: "Monthly ICS System Performance Report - January 2025",
   spam: false,
-  context: "TBC",
+  context:
+    "You recieve a monthly report from Nucletek about the uptime of all systems...",
 };
 r3.push(real14);
 
@@ -518,7 +535,8 @@ const fake14: CardData = {
   subject: "Violation of HR Policy - Immediate Action Required",
   spam: true,
   cues: 6,
-  context: "TBC",
+  context:
+    "You have never got in trouble with HR before, and you can't think of anything you might have done wrong...",
 };
 r3.push(fake14);
 
@@ -533,7 +551,8 @@ const real15: CardData = {
   from: "cyber@nucletek.com",
   subject: "Critical Cyber Threat Guidance",
   spam: false,
-  context: "TBC",
+  context:
+    "Your co-workers have been complaining about recieving many spam emails all week...",
 };
 r3.push(real15);
 
@@ -549,7 +568,8 @@ const fake15: CardData = {
   subject: "You Have 1 New Connection Request!",
   spam: true,
   cues: 2,
-  context: "TBC",
+  context:
+    "You've recently joined Linkedin and become connected with lots of people...",
 };
 r3.push(fake15);
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------

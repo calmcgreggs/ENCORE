@@ -52,7 +52,14 @@ export default function Real10({
         </p>
         <p>
           If you have any questions, please contact us at{" "}
-          <a href="mailto:info@icsacademy.com">info@giac.org</a>.
+          <a
+            href="mailto:info@icsacademy.com"
+            onClick={(e) => e.preventDefault()}
+            className="underline text-blue-500"
+          >
+            info@giac.org
+          </a>
+          .
         </p>
       </div>
       <div className="footer">&copy; 2025 GIAC. All rights reserved.</div>

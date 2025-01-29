@@ -58,7 +58,7 @@ export default function Real9({
         </a>
         <br /> <br />
         Thank you for taking the time to share your thoughts. For further
-        questions, contact feedback@icslearn.co.uk. <br /> <br />
+        questions, contact <a href="mailto:feedback@icslearn.co.uk" className="text-blue-500 underline" onClick={(e) => e.preventDefault()}>feedback@icslearn.co.uk.</a> <br /> <br />
         Best Regards,
         <br /> <br /> Dan Simpson
         <br />  Seminar Leader at ICS Learn

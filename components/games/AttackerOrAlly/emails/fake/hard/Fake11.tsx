@@ -26,7 +26,7 @@ export default function Fake11({
         frombad
         subjectbad
         emailNo={emailNo}
-        iStart={2}
+        iStart={3}
         fromcue="UnfamiliarDomain"
         subjectcue="PositiveConsequences"
       />
@@ -74,8 +74,16 @@ export default function Fake11({
         />
       </button>
       <p>
-        If you did not request this, please contact our support team at
-        passwordreset@microsoftemail.com.
+        If you did not request this, please contact our support team at{" "}
+        <FlagText
+          text="passwordreset@microsoftemail.com"
+          emailNo={emailNo}
+          flag={flagged}
+          index={2}
+          cue="MasqueradingLink"
+          href="mailto:passwordreset@microsoftemail.com."
+          link
+        />
       </p>
       <p>
         Thanks, <br />

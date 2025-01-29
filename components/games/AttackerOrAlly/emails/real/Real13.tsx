@@ -52,12 +52,18 @@ export default function Real13({
         <br />
         <br />
         For questions or concerns, please contact{" "}
-        <a href="mailto:safety@ics.com">safety@ics.com</a>.
+        <a
+          href="mailto:safety@nucletek.com"
+          className="text-blue-500 underline"
+        >
+          safety@nucletek.com
+        </a>
+        .
         <br />
         <br />
         Regards,
         <br />
-        Safety Team
+        Nucletek Safety Team
       </div>
     </div>
   );

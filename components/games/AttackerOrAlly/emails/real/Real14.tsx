@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useState } from "react";
 import EmailHeader from "../../EmailHeader";
 
-
 export default function Real14({
   from,
   subject,
@@ -13,7 +12,6 @@ export default function Real14({
   emailNo: number;
 }) {
   const [flagged, setFlagged] = useState(false);
-
 
   return (
     <div className="bg-white w-3/4 h-[90%] flex flex-col text-black rounded-xl mx-auto p-4 overflow-y-scroll transition-all ease-in-out duration-500 relative">
@@ -63,7 +61,14 @@ export default function Real14({
         <br />
         <br />
         If you have any questions or require further analysis, please contact{" "}
-        <a href="mailto:reports@nucletek.com" onClick={(e) => e.preventDefault()}>reports@nucletek.com</a>.
+        <a
+          href="mailto:reports@nucletek.com"
+          onClick={(e) => e.preventDefault()}
+          className="text-blue-500 underline"
+        >
+          reports@nucletek.com
+        </a>
+        .
         <br />
         <br />
         Regards,

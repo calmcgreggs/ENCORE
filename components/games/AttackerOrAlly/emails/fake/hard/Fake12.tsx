@@ -25,7 +25,7 @@ export default function Fake12({
         setFlagged={setFlagged}
         frombad
         emailNo={emailNo}
-        iStart={1}
+        iStart={2}
         fromcue="UnfamiliarDomain"
       />
       <div className="relative [&>p]:mb-5 [&>p]:select-none pt-16">
@@ -63,7 +63,15 @@ export default function Fake12({
         </p>
         <p>
           If you have any questions, please contact the return to office team at{" "}
-          <a href="mailto:hr@company.com">officereturn@nucletek.com</a>.
+          <FlagText
+            emailNo={emailNo}
+            index={1}
+            cue="MasqueradingLink"
+            flag={flagged}
+            text="officereturn@nucletek.com"
+            href="mailto:officereturn@nuckletek.com"
+            link
+          />
         </p>
         <p>
           Best, <br /> <br /> James Watt <br /> Nucletek CEO

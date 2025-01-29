@@ -39,7 +39,13 @@ export default function Real15({
           <li>Verify email senders before responding</li>
           <li>
             Report suspicious emails to{" "}
-            <a href="mailto:itsecurity@ics.com">itsecurity@ics.com</a>
+            <a
+              href="mailto:cyber@nucletek.com"
+              onClick={(e) => e.preventDefault()}
+              className="underline text-blue-500"
+            >
+              cyber@nucletek.com
+            </a>
           </li>
         </ul>
         <br />

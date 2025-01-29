@@ -43,7 +43,7 @@ export default function Fake7({
           index={1}
           text="manufacturing defect in the ICS Controller Model 789"
           cue="Generic"
-        />
+        />{" "}
         that may lead to operational failures under high load conditions. <br />{" "}
         <br />
         For safety, all affected units must be replaced immediately. Submit your

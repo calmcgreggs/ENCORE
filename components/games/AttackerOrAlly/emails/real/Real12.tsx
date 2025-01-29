@@ -48,6 +48,7 @@ export default function Real12({
         <a
           href="mailto:monitoring@nucletek.com"
           onClick={(e) => e.preventDefault()}
+          className="text-blue-500 underline"
         >
           monitoring@nucletek.com
         </a>
