@@ -8,6 +8,15 @@ import useGetAllUserProfiles from "@/hooks/useGetAllUserProfiles";
 import useGetUserProfile from "@/hooks/useGetUserProfile";
 import useIncrementPageProgress from "@/hooks/useIncrementPageProgress";
 import { useUser } from "@clerk/nextjs";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -104,7 +113,11 @@ export default function Dashboard() {
   // }, [userProfile]);
 
   type Tab = "Topics" | "Tests" | "Highscores";
-  type AdminTab = "Overview" | "Employee Scores" | "Cue Breakdown";
+  type AdminTab =
+    | "Overview"
+    | "Phishing Objectives"
+    | "Employee Scores"
+    | "Cue Breakdown";
 
   const [tab, setTab] = useState<Tab>("Topics");
   const [adminTab, setAdminTab] = useState<AdminTab>("Overview");
@@ -364,56 +377,123 @@ export default function Dashboard() {
         ) : (
           <>
             <div className="bg-transparent flex flex-col">
-              <div className="grid grid-cols-3 xl:w-[50%] mx-auto text-center mb-10 bg-white text-black font-bold transition-all duration-100 ease-in-out border-4 border-black [&>*]:border-black [&>*]:border-[1px]">
-                {["Overview", "Employee Scores", "Cue Breakdown"].map(
-                  (adCat, i) => {
-                    return (
-                      <div
-                        key={i}
-                        className={
-                          (adminTab.toString() == adCat
-                            ? "bg-black text-white"
-                            : "") + " p-2"
-                        }
+              <div className="grid grid-cols-4 xl:w-[50%] mx-auto text-center mb-10 bg-white text-black font-bold transition-all duration-100 ease-in-out border-4 border-black [&>*]:border-black [&>*]:border-[1px]">
+                {[
+                  "Overview",
+                  "Phishing Objectives",
+                  "Employee Scores",
+                  "Cue Breakdown",
+                ].map((adCat, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className={
+                        (adminTab.toString() == adCat
+                          ? "bg-black text-white"
+                          : "") + " p-2"
+                      }
+                    >
+                      <button
+                        onClick={() => {
+                          setAdminTab(adCat as AdminTab);
+                        }}
                       >
-                        <button
-                          onClick={() => {
-                            setAdminTab(adCat as AdminTab);
-                          }}
-                        >
-                          {adCat}
-                        </button>
-                      </div>
-                    );
-                  }
-                )}
+                        {adCat}
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
               {adminTab == "Overview" ? (
                 <div className="flex flex-row [&>*]:mx-10 mx-auto ">
-                  <div id="stats" className="gap-2 flex flex-col mx-auto">
-                    {/* TODO: This needs to be made dynamic */}
-                    <AdminStat
-                      text="of your employees can correctly identify all of the phishing scams in
-        their inbox"
-                      colour="green"
-                      percentage={84}
-                    />
-                    <AdminStat
-                      text="of your employees gave away their personal details"
-                      colour="green"
-                      percentage={0}
-                    />
-                    <AdminStat
-                      text="of your employees did not report a phishing email"
-                      colour="red"
-                      percentage={64}
-                    />
-                    <h1>
+                  <div id="stats" className="">
+                    <h1 className="text-3xl font-bold mb-5">
+                      Attacker or Ally Overview
+                    </h1>
+                    <hr />
+                    {userProfiles.length > 0 && (
+                      <div className=" my-auto relative flex flex-row  w-[80vw] overflow-hidden no-scrollbar gap-10  p-10">
+                        <div className="flex flex-col p-5 bg-slate-800 rounded-2xl w-1/2">
+                          <h1 className="text-center mb-5 font-bold text-2xl mx-auto">
+                            User Highscores (%)
+                          </h1>
+                          <BarChart
+                            className="mx-auto"
+                            width={400}
+                            height={400}
+                            title="Highscore per User"
+                            data={userProfiles.map((each, i) => {
+                              if (each.Highscore != -1)
+                                return {
+                                  UID: i + 1,
+                                  Highscore: each.Highscore,
+                                };
+                            })}
+                          >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="UID" label="User ID" />
+                            <YAxis unit="%" />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Highscore" fill="#8884d8" />
+                          </BarChart>
+                        </div>
+                        <div className="flex flex-col p-5 bg-slate-800 rounded-2xl w-1/2">
+                          <h1 className="text-center mb-5 font-bold text-2xl mx-auto">
+                            User Complete Times (Seconds)
+                          </h1>
+                          <BarChart
+                            className="mx-auto"
+                            width={600}
+                            height={400}
+                            title="Fastest Time per User"
+                            data={userProfiles.map((each, i) => {
+                              if (each.Highscore != -1)
+                                return {
+                                  UID: i + 1,
+                                  "Fastest Time Per User": each.FastestTime,
+                                };
+                            })}
+                          >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="UID" label="User ID" />
+                            <YAxis unit={"s"} />
+                            <Tooltip />
+                            {/* <Legend /> */}
+                            <Bar
+                              dataKey="Fastest Time Per User"
+                              fill="#34ab09"
+                              unit={" seconds"}
+                            />
+                          </BarChart>
+                        </div>
+                      </div>
+                    )}
+                    {/* <h1>
                       Bar graph here, x axis for rounds, y axises to indicate
                       metric (time and percentage rate), two bars average time
                       taken
-                    </h1>
+                    </h1> */}
                   </div>
+                </div>
+              ) : adminTab == "Phishing Objectives" ? (
+                <div className="flex flex-col [&>*]:mx-10 mx-auto gap-5 ">
+                  <AdminStat
+                    text="of your employees can correctly identify all of the phishing scams in
+        their inbox"
+                    colour="green"
+                    percentage={84}
+                  />
+                  <AdminStat
+                    text="of your employees gave away their personal details"
+                    colour="green"
+                    percentage={0}
+                  />
+                  <AdminStat
+                    text="of your employees did not report a phishing email"
+                    colour="red"
+                    percentage={64}
+                  />
                 </div>
               ) : adminTab == "Cue Breakdown" ? (
                 <div className="flex m-5 bg-white/30 isolate backdrop-blur-sm shadow-lg ring-1 ring-black/5 p-5 rounded-xl font-bold">
